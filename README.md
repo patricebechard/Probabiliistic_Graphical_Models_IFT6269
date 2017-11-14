@@ -1,0 +1,1 @@
+### Final project for IFT6269 on Latent Dirichlet Allocation
