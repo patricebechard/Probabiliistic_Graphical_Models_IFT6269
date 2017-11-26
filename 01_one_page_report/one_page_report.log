@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  26 NOV 2017 15:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  26 NOV 2017 15:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**choice_of_project.tex
-(./choice_of_project.tex
+**one_page_report.tex
+(./one_page_report.tex
 LaTeX2e <2015/01/01>
 Babel <3.9l> and hyphenation patterns for 79 languages loaded.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/article.cls
@@ -79,8 +79,8 @@ Package: subfigure 2002/03/15 v2.1.5 subfigure package
 \subfig@top=\skip47
 \subfig@bottom=\skip48
 )
-(/usr/local/texlive/2015/texmf-dist/tex/latex/natbib/natbib.sty
-Package: natbib 2010/09/13 8.31b (PWD, AO)
+(./natbib.sty
+Package: natbib 2009/07/16 8.31 (PWD, AO)
 \bibhang=\skip49
 \bibsep=\skip50
 LaTeX Info: Redefining \cite on input line 694.
@@ -230,8 +230,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 (./icml2017.sty
 Package: icml2017 2017/01/01 v2.0 ICML Conference Style File
-
-(/usr/local/texlive/2015/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+ (./fancyhdr.sty
 \fancy@headwidth=\skip54
 \f@ncyO@elh=\skip55
 \f@ncyO@erh=\skip56
@@ -273,8 +272,8 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 101.
 \cv@tmpc@=\count114
 \cv@tmpc=\count115
 )
-(./choice_of_project.aux)
-\openout1 = `choice_of_project.aux'.
+(./one_page_report.aux)
+\openout1 = `one_page_report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
 LaTeX Font Info:    ... okay on input line 49.
@@ -338,9 +337,9 @@ LaTeX Info: Redefining \ref on input line 49.
 LaTeX Info: Redefining \pageref on input line 49.
 LaTeX Info: Redefining \nameref on input line 49.
 
-(./choice_of_project.out) (./choice_of_project.out)
+(./one_page_report.out) (./one_page_report.out)
 \@outlinefile=\write3
-\openout3 = `choice_of_project.out'.
+\openout3 = `one_page_report.out'.
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 87.
@@ -391,21 +390,21 @@ Package atveryend Info: Empty hook `BeforeClearDocument' on input line 106.
 ]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 106.
 
-(./choice_of_project.aux)
+(./one_page_report.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 106.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 106.
-Package rerunfilecheck Info: File `choice_of_project.out' has not changed.
+Package rerunfilecheck Info: File `one_page_report.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 106.
  ) 
 Here is how much of TeX's memory you used:
- 6201 strings out of 493089
- 90706 string characters out of 6134842
- 178256 words of memory out of 5000000
- 9609 multiletter control sequences out of 15000+600000
+ 6198 strings out of 493089
+ 90354 string characters out of 6134842
+ 178339 words of memory out of 5000000
+ 9608 multiletter control sequences out of 15000+600000
  22625 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,7n,45p,359b,404s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,7n,45p,357b,404s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/tex
 live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texli
@@ -413,7 +412,7 @@ ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive
 /2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texm
 f-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fon
 ts/type1/urw/times/utmri8a.pfb>
-Output written on choice_of_project.pdf (1 page, 61822 bytes).
+Output written on one_page_report.pdf (1 page, 62204 bytes).
 PDF statistics:
  39 PDF objects out of 1000 (max. 8388607)
  29 compressed objects within 1 object stream
