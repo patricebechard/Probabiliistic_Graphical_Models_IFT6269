@@ -1,0 +1,33 @@
+\begin{thebibliography}{4}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Blei et~al.(2003)Blei, Ng, and Jordan]{blei2003latent}
+Blei, David~M, Ng, Andrew~Y, and Jordan, Michael~I.
+\newblock Latent dirichlet allocation.
+\newblock \emph{Journal of machine Learning research}, 3\penalty0
+  (Jan):\penalty0 993--1022, 2003.
+
+\bibitem[Darling(2011)]{darling2011theoretical}
+Darling, William~M.
+\newblock A theoretical and practical implementation tutorial on topic modeling
+  and gibbs sampling.
+\newblock In \emph{Proceedings of the 49th annual meeting of the association
+  for computational linguistics: Human language technologies}, pp.\  642--647,
+  2011.
+
+\bibitem[Griffiths(2002)]{griffiths2002gibbs}
+Griffiths, Tom.
+\newblock Gibbs sampling in the generative model of latent dirichlet
+  allocation.
+\newblock 2002.
+
+\bibitem[Heinrich(2005)]{heinrich2005parameter}
+Heinrich, Gregor.
+\newblock Parameter estimation for text analysis.
+\newblock 01 2005.
+
+\end{thebibliography}

@@ -44,7 +44,7 @@
 
 % The \icmltitle you define below is probably too long as a header.
 % Therefore, a short form for the running title is supplied here:
-\icmltitlerunning{Submission and Formatting Instructions for ICML 2017}
+\icmltitlerunning{Mid-project Report - Latent Dirichlet Allocation}
 
 \begin{document} 
 
@@ -97,10 +97,63 @@
 %\printAffiliationsAndNotice{}  % leave blank if no need to mention equal contribution
 \printAffiliationsAndNotice{\icmlEqualContribution} % otherwise use the standard text.
 
-\section{Choice of project}
+\begin{abstract} 
+The project we have chosen is to review the article from Blei, Ng and Jordan on Latent Dirichlet Allocation \cite{blei2003latent}, implement the model and experiment with real data from the \textit{20 newsgroups} text dataset.
+\end{abstract} 
 
-The proposed project consists of a review of the well known paper on Latent Dirichlet Allocation (Blei, Ng \& Jordan, 2001). We will implement LDA using variational EM as well as Gibbs sampling to approximate the parameters. We will also conduct an experiment on real data using the \textit{20 newsgroups} text dataset.
 
+\section{What has been done}
+
+We already have started to write the final report for the project. We first provide a description of the Latent Dirichlet Allocation generative probabilistic model, explaining the setting of the problem and providing both the graphical model and the joint distribution associated with the model.
+
+In the following section, we provide the mathematical developments on how to learn the parameters of the model to make accurate predictions using the EM algorithm and we highlight an important problem where the posterior distribution to our model is intractable, forcing us to rely on approximate inference to estimate the parameters. The first method used to solve this problem consist of using variational inference. We provide an in-depth explanation on how we define a new function which replaces the real posterior distribution, which we use to conduct the EM algorithm. We then reformulate both the E-step and the M-step applied to the situation and provide a pseudo-code for the algorithm.
+
+An implementation of the Latent Dirichlet Allocation using variational inference has already been done. We tested the algorithm on sets of documents from two topics (\textit{atheism} and \textit{space}) taken from the \textit{20 newsgroups} text dataset and compared the obtained results with a pre-made implementation of the Latent Dirichlet Allocation provided within the Scikit-Learn library. Table \ref{tab:top_words} presents some words associated with each topic for both our implementation of the LDA using variational inference and the Scikit-Learn implementation.
+
+We see that the results for both implementation are pretty similar, which is a good sign that our implementation is working as it should be. We also have implemented a function which presents the most likely topic assignment for each word in a document.
+
+\begin{table}[htp]
+\caption{\label{tab:top_words} Words associated to topics for our implementation of LDA using variational inference and Scikit-learn's implementation of LDA.}
+\vskip 0.15in
+\begin{center}
+\begin{small}
+\begin{tabular}{c|c|c|c}
+\multicolumn{2}{c|}{Our implementation} & \multicolumn{2}{c}{Scikit-learn} \\
+\multicolumn{2}{c|}{using variational inference} & \multicolumn{2}{c}{implementation} \\
+\hline 
+\textsc{Space} & \textsc{Atheism} & \textsc{Space} & \textsc{Atheism} \\
+\hline 
+space & one & space & people \\
+launch & would & nasa & god \\
+nasa & people & launch & don \\
+satellite & god & earth & just \\
+system & think & data & think \\
+mission & like & orbit & like \\
+year & thing & shuttle & does \\
+orbit & say & satellite & know \\
+program & know & lunar & say \\
+data & atheist & moon & atheism \\
+also & could & program & time \\
+earth & make & edu & believe
+
+\end{tabular}
+\end{small}
+\end{center}
+\label{default}
+\end{table}%
+
+\section{What still has to be done}
+
+A lot of things are still left for us to do. First, we will present an explanation of the EM algorithm for the model using Gibbs sampling as we have already done with variational inference and will provide a pseudocode of the algorithm as well. There is a lot of documentation about this precise subject in the literature \cite{griffiths2002gibbs}\cite{darling2011theoretical}\cite{heinrich2005parameter}. We will implement the Latent Dirichlet Allocation using Gibbs sampling to do approximate inference on the parameters of the model and experiment with similar data to look at the difference between both of our implementations as well as the one provided by Scikit-Learn. We will also expand our experimentation on more than two subjects and provide various cool visualisations.
+
+% http://scikit-learn.org/stable/datasets/twenty_newsgroups.html
+% Griffiths
+% Darling
+% Heinrich
+% Blei, Ng, Jordan
+
+\bibliographystyle{icml2017}
+\bibliography{one_page_report}
 
 
 \end{document} 
