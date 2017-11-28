@@ -94,7 +94,7 @@ TODO
 \subsection{Latent Dirichlet Allocation}
 
 \subsubsection{Generative Process}
-Latent Dirichlet allocation (LDA) is a generative probabilisitic model of a corpus of $D$ documents $\{\mathbf{w}_1,..., \mathbf{w}_D\}$. Each document is a sequence of $N_d$ words from a vocabulary indexed by $\{1,...,V\}$, i.e $\mathbf{w}_d = (w_{d,1},...,w_{d,N_d})$.
+Latent Dirichlet allocation (LDA) is a generative probabilisitic model of a corpus of $D$ documents $\{\mathbf{w}_1,..., \mathbf{w}_D\}$. Each document $\mathbf{w}_d = (w_{d,1},...,w_{d,N_d})$ is a sequence of $N_d$ words from a vocabulary indexed by $\{1,...,V\}$. 
 
 The basic idea behind LDA is that each document is represented as a random mixture over $K$ latent topics, where each topic is characterized by a multinomial distribution over words, parametrized by a vector $\bm{\beta}_{k}$, $k \in {1,...,K}$. 
 
@@ -123,27 +123,46 @@ This generative process is illustrated in the directed graphical model of figure
 The joint distribution associated with this model is:
 \begin{multline} 
 	\label{joint}
-	(\prod_{k=1}^{K} p(\bm{\beta}_k | \bm{\eta})) \\
-	(\prod_{d=1}^{D} p(\bm{\theta}_d | \bm{\alpha})
-	(\prod_{n=1}^{N_d} p(z_{d,n} | \bm{\theta}_d) p(w_{d,n} | z_{d,n}, \bm{\beta}_{1:K})))
+	\prod_{k=1}^{K} p(\bm{\beta}_k | \bm{\eta}) \\
+	\prod_{d=1}^{D} p(\bm{\theta}_d | \bm{\alpha})
+	\prod_{n=1}^{N_d} p(z_{d,n} | \bm{\theta}_d) p(w_{d,n} | z_{d,n}, \bm{\beta}_{1:K})
 \end{multline}
 where \\
-$p(z_{d,n} | \bm{\theta}_d) = \bm{\theta}_{d, z_{d,n}}$ \\
-$p(w_{d,n} | z_{d,n}, \bm{\beta}_{1:K}) = \bm{\beta}_{z_{d,n},w_{d,n}}$ \\
+$z_{d,n} \sim Mult(\bm{\theta}_d)$, i.e $p(z_{d,n} | \bm{\theta}_d) = \theta_{d, z_{d,n}}$ \\
+$w_{d,n} \sim Mult(\bm{\beta}_{z_{d,n}})$, i.e $p(w_{d,n} | z_{d,n}, \bm{\beta}_{1:K}) = \beta_{z_{d,n},w_{d,n}}$ \\
 $\bm{\beta}_k \sim Dir(\bm{\eta})$ \\
 $\bm{\theta}_d \sim Dir(\bm{\alpha})$ \\
 
-This generative process is just a model of the structure we assume to be in our data. In reality, we only observe documents $\mathbf{w}_{1:D}$ and our goal is to infer the underlying topic structure: the topics $\bm{\beta}_{1:K}$, and for each document the distribution over topics $\bm{\theta}_{d}$, and the topic assignment $z_{d, n}$ for each word of the document. 
+This generative process is just a model of the structure we assume to be in our data. In reality, we only observe documents $\mathbf{w}_{1:D}$ and our goal is to infer the underlying topic structure: the topics $\bm{\beta}_{1:K}$, the per document distributions over topics $\bm{\theta}_{d}$, and per document per word topic assignments $z_{d, n}$. 
+
+Since the generative process assumes independence between documents, the probability of the whole corpus decomposes as a product of terms for individual documents. In order to clarify the notation, from now on let us consider equations for a single document $\mathbf{w}$ with $N$ words.
+
+Assuming the Dirichlet hyper-parameters $\bm{\alpha}$ and $\bm{\eta}$ are fixed, we want to infer the posterior distribution:
+\begin{equation}
+ p(\bm{\beta}, \bm{\theta}, \mathbf{z} | \mathbf{w}, \bm{\alpha}, \bm{\eta}) =
+ \frac{p(\bm{\beta}, \bm{\theta}, \mathbf{z}, \mathbf{w} | \bm{\alpha}, \bm{\eta})}{p(\mathbf{w} | \bm{\alpha}, \bm{\eta})}
+\end{equation}
+
+Unfortunately, this distribution is intractable to compute because the normalization factor $p(\mathbf{w} | \bm{\alpha}, \bm{\eta})$ cannot be computed exactly. We must use approximate inference to estimate the posterior over latent variables $\bm{\beta}$, $\bm{\theta}$ and $\mathbf{z}$. We will explore both variational inference and Gibbs sampling to solve this problem.
 
 \subsection{Related Works}
 TODO
 
 \section{Methods}
 
-\subsection{Fitting the Model}
-Since the generative process assumes independence between documents, the log likelihood of the whole corpus decomposes as a sum of terms for individual documents. In order to clarify the notation, from now on let us consider consider equations for a single document $\mathbf{w}$ with $N$ words.
+\subsection{Variational EM}
+To make our life easier, we derive a variational EM algorithm for a slightly simpler graphical model for LDA (the one presented in the original paper). We remove the Dirichlet prior over topics, this corresponds to removing the dependence of the $\bm{\beta}$ plate on the $\bm{\eta}$ random variable (see Figure \ref{graph_model2}, left). By doing so, we lose our ability to smooth topics through the $\bm{\eta}$ parameter.
 
-Assuming $\bm{\alpha}$ and $\bm{\beta}_{1:K}$ are fixed, the log likelihood of a single document $\mathbf{w}$ takes the form:
+Assuming the $\bm{\alpha}$ parameter and topics $\bm{\beta}$ are fixed, the posterior for a single document $\mathbf{w}$ now takes the form:
+\begin{equation}
+p(\bm{\theta}, \mathbf{z} | \mathbf{w}, \bm{\alpha}, \bm{\beta}) =
+\frac{p(\bm{\theta}, \mathbf{z}, \mathbf{w} | \bm{\alpha}, \bm{\beta})}
+		{p(\mathbf{w} | \bm{\alpha}, \bm{\beta})} 
+\end{equation}
+
+This expression is still intractable because of the denominator $p(\mathbf{w} | \bm{\alpha}, \bm{\beta})$. 
+
+Let us motivate a variational EM algorithm by looking at how this intractable posterior comes back to bite us when we try to maximize the likelihood of the observed data. Since the probability of the whole corpus decomposes as a product of terms for individual documents, the log likelihood of the whole corpus decomposes as a sum of terms for individual documents. The log likelihood of a single document $\mathbf{w}$ takes the form:
 \begin{equation}
 log p(\mathbf{w} | \bm{\alpha}, \bm{\beta}) =
 	log \int \sum_{\mathbf{z}} p (\bm{\theta}, \mathbf{z}, \mathbf{w} | \bm{\alpha}, \bm{\beta}) d\bm{\theta} 
@@ -163,31 +182,33 @@ The EM algorithm consists in alternatively maximizing the lower bound $\mathcal{
 
 One can easily show that maximizing $\mathcal{L}$ with respect to $q$ is equivalent to minimizing $KL(q(\bm{\theta}, \mathbf{z}) || p(\bm{\theta}, \mathbf{z} | \mathbf{w}, \bm{\alpha}, \bm{\beta}))$. A simple solution is thus to set $q(\bm{\theta}, \mathbf{z})$ to be $p(\bm{\theta}, \mathbf{z} | \mathbf{w}, \bm{\alpha}, \bm{\beta})$, the true posterior over latent variables under the model.
 
-In our case, things are not so simple. The posterior takes the following form:
-\begin{align}
-p(\bm{\theta}, \mathbf{z} | \mathbf{w}, \bm{\alpha}, \bm{\beta}) &=
-\frac{p(\bm{\theta}, \mathbf{z}, \mathbf{w} | \bm{\alpha}, \bm{\beta})}
-		{p(\mathbf{w} | \bm{\alpha}, \bm{\beta})} \\
-&= \frac{p(\bm{\theta} | \bm{\alpha}) \prod_{n=1}^N p(z_n | \bm{\theta})
-	p(w_n | z_n, \bm{\beta})}
-	{\int_{\bm{\theta}} p(\bm{\theta} | \bm{\alpha}) \prod_{n=1}^N 			\sum_{z_n=1}^K p(z_n | 	\bm{\theta}) p(w_n | z_n, \bm{\beta})}
-\end{align}
-
-Because of the integral over $\bm{\theta}$ and the sum over $z_n$ in the denominator, this expression is intractable. We must use approximate inference to estimate the posterior over latent variables $\bm{\theta}$ and $\mathbf{z}$. We will explore both variational inference and Gibbs sampling to solve this problem.
-
-\subsection{Variational Inference}
-Variational inference is one solution to approximate the intractable per-document posterior $p(\bm{\theta}, \mathbf{z} | \mathbf{w}, \bm{\alpha}, \bm{\beta})$. The basic idea is to introduce a parametrized family of distributions over latent variables and phrase inference as an optimization problem. 
+In our case, things are not so simple: as we have seen, the posterior $p(\bm{\theta}, \mathbf{z} | \mathbf{w}, \bm{\alpha}, \bm{\beta})$ is intractable. This is were variational inference comes into play. The basic idea is to introduce a parametrized family of distributions over latent variables and phrase inference as an optimization problem. 
 
 We parametrize $q$ as follows, according to the mean field independence assumption:
 \begin{equation}
 q(\bm{\theta}, \mathbf{z} | \bm{\gamma}, \bm{\phi}) =
 q(\bm{\theta} | \bm{\gamma}) \prod_{n=1}^N q(z_n | \bm{\phi}_n)
 \end{equation}
-where the dirichlet parameters $\bm{\gamma}$ and the multinomial parameters $\bm{\phi}_n$, $n \in \{1,...,N\}$ are free variational parameters. 
+where the dirichlet parameters $\bm{\gamma}$ and the multinomial parameters $\bm{\phi}_n$, $n \in \{1,...,N\}$ are free variational parameters. The graphical model corresponding to this parameterization is illustrated in Figure \ref{graph_model2}, right.
 
-In section 1.1.2, we saw that maximizing the lower bound $\mathcal{L}$ on the likelihood with respect to the distribution $q$ was equivalent to minimizing $KL(q(\bm{\theta}, \mathbf{z}) || p(\bm{\theta}, \mathbf{z} | \mathbf{w}, \bm{\alpha}, \bm{\beta}))$ with respect to $q$. We saw that since the posterior $p(\bm{\theta}, \mathbf{z} | \mathbf{w}, \bm{\alpha}, \bm{\beta})$ was intractable, we could not minimize this objective by simply setting $q(\bm{\theta}, \mathbf{z})$ to be the posterior, and we thus had to find another strategy. 
+\begin{figure}[ht]
+\vskip 0.2in
+\begin{center}
+\centerline{\includegraphics[width=\columnwidth]{LDA_graph_model2}}
+\caption{Graphical model corresponding to the generative process for LDA.}
+\label{graph_model2}
+\end{center}
+\vskip -0.2in
+\end{figure} 
 
-Variational inference consists in minimizing the KL objective with respect to the parameters $\bm{\gamma}$ and $\bm{\phi}$ of $q(\bm{\theta}, \mathbf{z} | \bm{\gamma}, \bm{\phi})$. Note that $q(\bm{\theta}, \mathbf{z} | \bm{\gamma}, \bm{\phi})$ is actually a conditional distribution varying as a function of $\mathbf{w}$ because the optimization objective depends on $\mathbf{w}$. It can thus be seen as an approximation to the posterior $p(\bm{\theta}, \mathbf{z} | \mathbf{w}, \bm{\alpha}, \bm{\beta})$.
+Now variational inference consists in solving the following optimization problem:
+\begin{equation}
+(\bm{\gamma}^*, \bm{\phi}^*) =
+\underset{\bm{\gamma}, \bm{\phi}}{\text{arg min}}
+	KL(q(\bm{\theta}, \mathbf{z} | \bm{\gamma}, \bm{\phi}) || p(\bm{\theta}, \mathbf{z} | \mathbf{w}, \bm{\alpha}, \bm{\beta}))
+\end{equation}
+
+Note that $q(\bm{\theta}, \mathbf{z} | \mathbf{w}, \bm{\gamma}^*, \bm{\phi}^*)$ is actually a conditional distribution varying as a function of $\mathbf{w}$ because the optimization objective depends on $\mathbf{w}$. It can thus be seen as an approximation to the posterior $p(\bm{\theta}, \mathbf{z} | \mathbf{w}, \bm{\alpha}, \bm{\beta})$.
 
 With this tool at our disposal, we can come back and complete the EM algorithm described in section 1.1.2. We can expand our variational lower bound on the per-document log likelihood as follows:
 \begin{multline}
@@ -207,7 +228,7 @@ In the E-step, we maximize $\mathcal{L}$ with respect to the variational paramet
 \bm{\phi}_{n,k} \propto \bm{\beta}_{k, w_n} exp\{\Psi(\bm{\gamma}_k)\}
 \end{equation}
 \begin{equation}
-\label{gamma_update}
+\label{gamma_update}f
 \bm{\gamma}_{k} = \bm{\alpha}_{k} + \sum_{n=1}^N \bm{\phi}_{n,k}
 \end{equation}
 where $\Psi(x) = \frac{\Gamma'(x)}{\Gamma(x)}$ is the digamma function.
@@ -228,8 +249,7 @@ where we abuse notation and index word $w_{d,n}$ which was a scalar until here a
 Equation \ref{beta_update} also has an intuitive meaning: the probability of word $j$ under topic $k$ is proportional to the expected count under the variational distribution of the number of times word $j$ is assigned topic $k$ across the whole corpus.
 
 \subsubsection{Overall Algorithm}
-
-We implemented a variational "EM flavored" algorithm which we described in detail in algorithm below. Note that to be strictly an EM algorithm, we should maximize $\mathcal{L}$ with respect to $\bm{\phi}$ and $\bm{\gamma}$ all the way at each E-step. Instead, we alternate a single step of improvement with respect to the variational parameters with one step of improvement with respect to $\bm{\beta}$. Our algorithm has the same guarantee to increase the variational lower bound at each iteration, it is just more convenient to check for convergence only for the overall algorithm instead of for each E-step.
+We implemented a variational "EM flavored" algorithm which we described in detail in the algorithm below. Note that to be strictly an EM algorithm, we should maximize $\mathcal{L}$ with respect to $\bm{\phi}$ and $\bm{\gamma}$ all the way at each E-step. Instead, we alternate a single step of improvement with respect to the variational parameters with one step of improvement with respect to $\bm{\beta}$. Our algorithm has the same guarantee to increase the variational lower bound at each iteration, it is just more convenient to check for convergence only for the overall algorithm instead of for each E-step.
 
 \begin{algorithm}[tb]
    \caption{Variational EM}
@@ -258,6 +278,13 @@ We implemented a variational "EM flavored" algorithm which we described in detai
    \UNTIL{objective $\mathcal{L}$ doesn't improve anymore}
 \end{algorithmic}
 \end{algorithm}
+
+\subsection{Gibbs Sampling}
+TODO
+
+%Once again, we consider a single document $\mathbf{w}$ with $N$ words. Recall that we are interested in the latent topics $\bm{\beta}_{1:K}$, the distribution over topics $\bm{\theta}$, and the per word topic assignments $z_{n}$, $n \in \{1,...,N\}$. 
+
+%We could derive conditional distributions for each of these latent variables, and therefore an LDA Gibbs Sampling algorithm, but we note that both $\bm{\theta}_{d}$ and $\bm{\beta}_k$ can be computed using the topic assignments $z_{d,n}$ which are sufficient statistics. This allows us to integrate out the multinomial parameters and simply sample $z_{d,n}$.
 
 \section{Experiments}
 TODO

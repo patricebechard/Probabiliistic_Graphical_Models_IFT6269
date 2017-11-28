@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.30)  21 NOV 2017 15:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.30)  27 NOV 2017 19:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -457,63 +457,53 @@ Underfull \hbox (badness 10000) in paragraph at lines 129--135
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 4181) has occurred while \output is active []
 
  [1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 
  <./LDA_graph_model.png>]
-Overfull \hbox (25.70357pt too wide) in paragraph at lines 174--174
-[] 
- []
+Underfull \vbox (badness 2529) has occurred while \output is active []
 
 
-Underfull \hbox (badness 1845) in paragraph at lines 188--189
-\OT1/ptm/m/n/10 equiv-a-lent to min-i-miz-ing $\OML/cmm/m/it/10 KL\OT1/cmr/m/n/
-10 (\OML/cmm/m/it/10 q\OT1/cmr/m/n/10 (\OML/cmm/b/it/10 ^^R\OML/cmm/m/it/10 ; \
-OT1/cmr/bx/n/10 z\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 jj\OML/cmm/m/it/10 p\OT1/cmr
-/m/n/10 (\OML/cmm/b/it/10 ^^R\OML/cmm/m/it/10 ; \OT1/cmr/bx/n/10 z\OMS/cmsy/m/n
-/10 j\OT1/cmr/bx/n/10 w\OML/cmm/m/it/10 ; \OML/cmm/b/it/10 \OML/cmm/m/it/10 ; 
-\OML/cmm/b/it/10 ^^L\OT1/cmr/m/n/10 ))$
- []
+<LDA_graph_model2.png, id=41, 601.24625pt x 185.69376pt>
+File: LDA_graph_model2.png Graphic file (type png)
 
+<use LDA_graph_model2.png>
+Package pdftex.def Info: LDA_graph_model2.png used on input line 197.
+(pdftex.def)             Requested size: 234.8775pt x 72.5421pt.
+ [2 <./LDA_graph_model2.png>]
+Underfull \vbox (badness 7168) has occurred while \output is active []
 
-Underfull \hbox (badness 1292) in paragraph at lines 188--189
-\OT1/ptm/m/n/10 with re-spect to $\OML/cmm/m/it/10 q$\OT1/ptm/m/n/10 . We saw t
-hat since the pos-te-rior
- []
+ [3]
 
-[2]
-
-Package natbib Warning: Citation `langley00' undefined on input line 270.
+Package natbib Warning: Citation `langley00' undefined on input line 297.
 
 No file report.bbl.
 
 Package natbib Warning: There were undefined citations.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 275.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 302.
+[4
 
-Underfull \vbox (badness 2237) has occurred while \output is active []
-
- [3]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 275.
-
-(./report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 275.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 275.
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 302.
+ (./report.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 302.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 302.
 Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 275.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 302.
  ) 
 Here is how much of TeX's memory you used:
- 6987 strings out of 493089
- 99462 string characters out of 6134842
- 201033 words of memory out of 5000000
- 10297 multiletter control sequences out of 15000+600000
- 31618 words of font info for 68 fonts, out of 8000000 for 9000
+ 6997 strings out of 493089
+ 99635 string characters out of 6134842
+ 201118 words of memory out of 5000000
+ 10303 multiletter control sequences out of 15000+600000
+ 32125 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,12n,45p,629b,762s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,12n,45p,633b,762s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texl
@@ -529,15 +519,16 @@ exmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb></usr/local/texlive/20
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2015/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2015/texmf
--dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2015/texmf-d
-ist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/
-type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/
-times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr
-i8a.pfb>
-Output written on report.pdf (3 pages, 198841 bytes).
+-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2015/texmf-dis
+t/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/ty
+pe1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/ti
+mes/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8
+a.pfb>
+Output written on report.pdf (4 pages, 219781 bytes).
 PDF statistics:
- 170 PDF objects out of 1000 (max. 8388607)
- 142 compressed objects within 2 object streams
- 56 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 184 PDF objects out of 1000 (max. 8388607)
+ 152 compressed objects within 2 object streams
+ 59 named destinations out of 1000 (max. 500000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
