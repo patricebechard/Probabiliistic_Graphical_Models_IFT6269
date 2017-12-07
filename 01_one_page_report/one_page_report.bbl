@@ -8,26 +8,27 @@
 \bibitem[Blei et~al.(2003)Blei, Ng, and Jordan]{blei2003latent}
 Blei, David~M, Ng, Andrew~Y, and Jordan, Michael~I.
 \newblock Latent dirichlet allocation.
-\newblock \emph{Journal of machine Learning research}, 3\penalty0
-  (Jan):\penalty0 993--1022, 2003.
+\newblock \emph{The Journal of Machine Learning Research}, 3:\penalty0
+  993--1022, 2003.
 
 \bibitem[Darling(2011)]{darling2011theoretical}
 Darling, William~M.
 \newblock A theoretical and practical implementation tutorial on topic modeling
   and gibbs sampling.
 \newblock In \emph{Proceedings of the 49th annual meeting of the association
-  for computational linguistics: Human language technologies}, pp.\  642--647,
-  2011.
+  for computational linguistics: Human language technologies}, 2011.
 
 \bibitem[Griffiths(2002)]{griffiths2002gibbs}
 Griffiths, Tom.
 \newblock Gibbs sampling in the generative model of latent dirichlet
   allocation.
-\newblock 2002.
+\newblock Technical report, Department of Psychology, Stanford University,
+  Stanford, CA, 2002.
 
 \bibitem[Heinrich(2005)]{heinrich2005parameter}
 Heinrich, Gregor.
 \newblock Parameter estimation for text analysis.
-\newblock 01 2005.
+\newblock Technical report, vsonix GmbH + University of Leipzig, Leipzig,
+  Germany, 2005.
 
 \end{thebibliography}

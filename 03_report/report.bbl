@@ -1,0 +1,72 @@
+\begin{thebibliography}{10}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Blei(2012)]{blei2012probabilistic}
+Blei, David~M.
+\newblock Probabilistic topic models.
+\newblock \emph{Communications of the ACM}, 55\penalty0 (4):\penalty0 77--84,
+  2012.
+
+\bibitem[Blei \& Lafferty(2006)Blei and Lafferty]{blei2006dynamic}
+Blei, David~M and Lafferty, John~D.
+\newblock Dynamic topic models.
+\newblock In \emph{Proceedings of the 23rd international conference on Machine
+  learning}, pp.\  113--120. ACM, 2006.
+
+\bibitem[Blei et~al.(2003)Blei, Ng, and Jordan]{blei2003latent}
+Blei, David~M, Ng, Andrew~Y, and Jordan, Michael~I.
+\newblock Latent dirichlet allocation.
+\newblock \emph{The Journal of Machine Learning Research}, 3:\penalty0
+  993--1022, 2003.
+
+\bibitem[Darling(2011)]{darling2011theoretical}
+Darling, William~M.
+\newblock A theoretical and practical implementation tutorial on topic modeling
+  and gibbs sampling.
+\newblock In \emph{Proceedings of the 49th annual meeting of the association
+  for computational linguistics: Human language technologies}, 2011.
+
+\bibitem[Griffiths \& Steyvers(2004)Griffiths and
+  Steyvers]{griffiths2004finding}
+Griffiths, Thomas~L and Steyvers, Mark.
+\newblock Finding scientific topics.
+\newblock \emph{Proceedings of the National academy of Sciences}, 101\penalty0
+  (suppl 1):\penalty0 5228--5235, 2004.
+
+\bibitem[Griffiths et~al.(2005)Griffiths, Steyvers, Blei, and
+  Tenenbaum]{griffiths2005integrating}
+Griffiths, Thomas~L, Steyvers, Mark, Blei, David~M, and Tenenbaum, Joshua~B.
+\newblock Integrating topics and syntax.
+\newblock In \emph{Advances in neural information processing systems}, pp.\
+  537--544, 2005.
+
+\bibitem[Griffiths(2002)]{griffiths2002gibbs}
+Griffiths, Tom.
+\newblock Gibbs sampling in the generative model of latent dirichlet
+  allocation.
+\newblock Technical report, Department of Psychology, Stanford University,
+  Stanford, CA, 2002.
+
+\bibitem[Heinrich(2005)]{heinrich2005parameter}
+Heinrich, Gregor.
+\newblock Parameter estimation for text analysis.
+\newblock Technical report, vsonix GmbH + University of Leipzig, Leipzig,
+  Germany, 2005.
+
+\bibitem[Hofmann(1999)]{hofmann1999probabilistic}
+Hofmann, Thomas.
+\newblock Probabilistic latent semantic analysis.
+\newblock In \emph{Proceedings of the Fifteenth conference on Uncertainty in
+  artificial intelligence}, pp.\  289--296. Morgan Kaufmann Publishers Inc.,
+  1999.
+
+\bibitem[Rennie(2008)]{20_newsgroups}
+Rennie, Jason.
+\newblock 20 newsgroups, 2008.
+\newblock URL \url{http://qwone.com/~jason/20Newsgroups/}.
+
+\end{thebibliography}

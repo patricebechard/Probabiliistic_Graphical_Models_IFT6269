@@ -43,6 +43,8 @@
 \renewcommand\algorithmiccomment[1]{%
 	\#\ \eqparbox{COMMENT}{#1}%
 }
+\newcommand{\diff}{\mathrm{d}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -82,6 +84,7 @@ Latent Dirichlet Allocation}
 ]
 
 % this must go after the closing bracket ] following \twocolumn[ ...
+%]
 
 % This command actually creates the footnote in the first column
 % listing the affiliations and the copyright notice.
@@ -128,12 +131,14 @@ This generative process is illustrated in the directed graphical model of figure
 \end{figure} 
 
 The joint distribution associated with this model is:
+{\small
 \begin{multline} 
 	\label{joint}
-	\prod_{k=1}^{K} p(\bm{\beta}_k | \bm{\eta}) \\
+	\prod_{k=1}^{K} p(\bm{\beta}_k | \bm{\eta}) 
 	\prod_{d=1}^{D} p(\bm{\theta}_d | \bm{\alpha})
 	\prod_{n=1}^{N_d} p(z_{d,n} | \bm{\theta}_d) p(w_{d,n} | z_{d,n}, \bm{\beta}_{1:K})
 \end{multline}
+}
 where \\
 $z_{d,n} \sim \mathrm{Mult}(\bm{\theta}_d)$, i.e $p(z_{d,n} | \bm{\theta}_d) = \theta_{d, z_{d,n}}$ \\
 $w_{d,n} \sim \mathrm{Mult}(\bm{\beta}_{z_{d,n}})$, i.e $p(w_{d,n} | z_{d,n}, \bm{\beta}_{1:K}) = \beta_{z_{d,n},w_{d,n}}$ \\
@@ -145,7 +150,7 @@ This generative process is just a model of the structure we assume to be in our 
 Since the generative process assumes independence between documents, the probability of the whole corpus decomposes as a product of terms for individual documents. In order to clarify the notation, from now on let us consider equations for a single document $\mathbf{w}$ with $N$ words.
 
 Assuming the Dirichlet hyper-parameters $\bm{\alpha}$ and $\bm{\eta}$ are fixed, we want to infer the posterior distribution:
-\begin{equation}
+\begin{equation}\label{eq:posteriorLDA}
  p(\bm{\beta}, \bm{\theta}, \mathbf{z} | \mathbf{w}, \bm{\alpha}, \bm{\eta}) =
  \frac{p(\bm{\beta}, \bm{\theta}, \mathbf{z}, \mathbf{w} | \bm{\alpha}, \bm{\eta})}{p(\mathbf{w} | \bm{\alpha}, \bm{\eta})}
 \end{equation}
@@ -153,7 +158,17 @@ Assuming the Dirichlet hyper-parameters $\bm{\alpha}$ and $\bm{\eta}$ are fixed,
 Unfortunately, this distribution is intractable to compute because the normalization factor $p(\mathbf{w} | \bm{\alpha}, \bm{\eta})$ cannot be computed exactly. We must use approximate inference to estimate the posterior over latent variables $\bm{\beta}$, $\bm{\theta}$ and $\mathbf{z}$. We will explore both variational inference and Gibbs sampling to solve this problem.
 
 \subsection{Related Works}
-TODO
+Most of the work done in this article is based on the original Latent Dirichlet Allication paper \cite{blei2003latent}, which covers the general theory of the model as well as the variational inference approach to estimate the posterior. Other works present the Gibbs sampling approach for the same problem and provide useful implementation details \cite{darling2011theoretical, griffiths2002gibbs, heinrich2005parameter}.
+
+Latent Dirichlet Allocation is an extension of the probabilistic latent semantic analysis (pLSA) model \cite{hofmann1999probabilistic}, which postulates that a document $\mathbf{w}$ and a word $w_{n}$ are conditionally independent given a latent topic $z$ :
+
+\begin{equation*}
+p(\mathbf{w},w_{n}) = p(\mathbf{w}) \sum_z p(w_n|z)p(z|\mathbf{w})
+\end{equation*}
+
+Some problems arise with this model. First, while it does make it possible for a document to contain multiple topics, the model only learns the topic mixtures $p(z|\mathbf{w})$ for the documents it has seen during the training, making it difficult to use it to assign probability to previously unseen documents. Furthermore, the number of parameters which the model tries to estimate grows linearly with the number of documents in the training set, which makes the model prone to overfitting. LDA overcome both of the main problems with pLSA by adding a Dirichlet prior over the documents, defining a complete generative model.
+
+However, LDA is by no means perfect. There have been many new ways to enhance the model to make it more realistic by relaxing some assumptions made by the model. The bag-of-words assumption is fine for our use of the LDA, which is to uncover the topics present in a document and to assign a certain word to a topic. For more complicated goals, such as generating text, the assumption becomes inappropriate. There have been a number of extensions of the model that relaxes the bag-of-words assumption, for example, by combining the LDA with a Hidden Markov Model (HMM) to take into account the ordering of the words \cite{griffiths2005integrating}. It is also possible to relax the assumption that the ordering of the documents is irrelevant if we wish to find the evolution of certain topics over time, for example. A dynamic topic model would then be more appropriated than the normal LDA \cite{blei2006dynamic}.
 
 \section{Methods}
 
@@ -172,22 +187,22 @@ This expression is still intractable because of the denominator $p(\mathbf{w} | 
 Let us motivate a variational EM algorithm by looking at how this intractable posterior comes back to bite us when we try to maximize the likelihood of the observed data. Since the probability of the whole corpus decomposes as a product of terms for individual documents, the log likelihood of the whole corpus decomposes as a sum of terms for individual documents. The log likelihood of a single document $\mathbf{w}$ takes the form:
 \begin{equation}
 \log p(\mathbf{w} | \bm{\alpha}, \bm{\beta}) =
-	\log \int \sum_{\mathbf{z}} p (\bm{\theta}, \mathbf{z}, \mathbf{w} | \bm{\alpha}, \bm{\beta}) d\bm{\theta} 
+	\log \int \sum_{\mathbf{z}} p (\bm{\theta}, \mathbf{z}, \mathbf{w} | \bm{\alpha}, \bm{\beta}) \diff\bm{\theta} 
 \end{equation}
 
 Because of the integral over $\bm{\theta}$ and the sum over $\mathbf{z}$ inside the log, we cannot maximize this objective directly. One common way to solve this problem is the Expectation Maximization (EM) algorithm. We make the following observation:
 \begin{align*}
 \log p(\mathbf{w} | \bm{\alpha}, \bm{\beta}) 
-&= \log \int \sum_{\mathbf{z}} \frac{p (\bm{\theta}, \mathbf{z}, \mathbf{w} | \bm{\alpha}, \bm{\beta}) q(\bm{\theta}, \mathbf{z})}{q(\bm{\theta}, \mathbf{z})}  d\bm{\theta} \\
-&= \mathbb{E}_q [\log \int \sum_{\mathbf{z}} \frac{p (\bm{\theta}, \mathbf{z}, \mathbf{w} | \bm{\alpha}, \bm{\beta})}{q(\bm{\theta}, \mathbf{z})}  d\bm{\theta}] \\
-&\geq \mathbb{E}_q [\log p(\bm{\theta}, \mathbf{z}, \mathbf{w} | \bm{\alpha}, \bm{\beta})] + \mathbb{E}_q [\log q(\bm{\theta}, \mathbf{z})] \\
+&= \log \int \sum_{\mathbf{z}} \frac{p (\bm{\theta}, \mathbf{z}, \mathbf{w} | \bm{\alpha}, \bm{\beta}) q(\bm{\theta}, \mathbf{z})}{q(\bm{\theta}, \mathbf{z})}  \diff\bm{\theta} \\
+&= \mathbb{E}_q \left[\log \int \sum_{\mathbf{z}} \frac{p (\bm{\theta}, \mathbf{z}, \mathbf{w} | \bm{\alpha}, \bm{\beta})}{q(\bm{\theta}, \mathbf{z})}  \diff\bm{\theta}\right] \\
+&\geq \mathbb{E}_q \left[\log p(\bm{\theta}, \mathbf{z}, \mathbf{w} | \bm{\alpha}, \bm{\beta})\right] + \mathbb{E}_q \left[\log q(\bm{\theta}, \mathbf{z})\right] \\
 &= \mathcal{L}(q, \bm{\alpha}, \bm{\beta})
 \end{align*}
 where we have introduced an arbitrary distribution $q(\bm{\theta}, \mathbf{z})$ over the problematic latent variables $\bm{\theta}$ and $\mathbf{z}$, and the last step follows from Jensen's inequality.
 
 The EM algorithm consists in alternatively maximizing the lower bound $\mathcal{L}$ on the log likelihood with respect to the distribution $q$ (the E-step), and with respect to parameters $\bm{\alpha}$ and $\bm{\beta}$ (the M-step).
 
-One can easily show that maximizing $\mathcal{L}$ with respect to $q$ is equivalent to minimizing $KL(q(\bm{\theta}, \mathbf{z}) || p(\bm{\theta}, \mathbf{z} | \mathbf{w}, \bm{\alpha}, \bm{\beta}))$. A simple solution is thus to set $q(\bm{\theta}, \mathbf{z})$ to be $p(\bm{\theta}, \mathbf{z} | \mathbf{w}, \bm{\alpha}, \bm{\beta})$, the true posterior over latent variables under the model.
+One can easily show that maximizing $\mathcal{L}$ with respect to $q$ is equivalent to minimizing $\mathrm{KL}\left(q(\bm{\theta}, \mathbf{z}) || p(\bm{\theta}, \mathbf{z} | \mathbf{w}, \bm{\alpha}, \bm{\beta})\right)$. A simple solution is thus to set $q(\bm{\theta}, \mathbf{z})$ to be $p(\bm{\theta}, \mathbf{z} | \mathbf{w}, \bm{\alpha}, \bm{\beta})$, the true posterior over latent variables under the model.
 
 In our case, things are not so simple: as we have seen, the posterior $p(\bm{\theta}, \mathbf{z} | \mathbf{w}, \bm{\alpha}, \bm{\beta})$ is intractable. This is were variational inference comes into play. The basic idea is to introduce a parametrized family of distributions over latent variables and phrase inference as an optimization problem. 
 
@@ -235,7 +250,7 @@ In the E-step, we maximize $\mathcal{L}$ with respect to the variational paramet
 \bm{\phi}_{n,k} \propto \bm{\beta}_{k, w_n} \exp\{\Psi(\bm{\gamma}_k)\}
 \end{equation}
 \begin{equation}
-\label{gamma_update}f
+\label{gamma_update}
 \bm{\gamma}_{k} = \bm{\alpha}_{k} + \sum_{n=1}^N \bm{\phi}_{n,k}
 \end{equation}
 where $\Psi(x) = \frac{\Gamma'(x)}{\Gamma(x)}$ is the digamma function.
@@ -256,9 +271,9 @@ where we abuse notation and index word $w_{d,n}$ which was a scalar until here a
 Equation \ref{beta_update} also has an intuitive meaning: the probability of word $j$ under topic $k$ is proportional to the expected count under the variational distribution of the number of times word $j$ is assigned topic $k$ across the whole corpus.
 
 \subsubsection{Overall Algorithm}
-We implemented a variational "EM flavored" algorithm which we described in detail in the algorithm below. Note that to be strictly an EM algorithm, we should maximize $\mathcal{L}$ with respect to $\bm{\phi}$ and $\bm{\gamma}$ all the way at each E-step. Instead, we alternate a single step of improvement with respect to the variational parameters with one step of improvement with respect to $\bm{\beta}$. Our algorithm has the same guarantee to increase the variational lower bound at each iteration, it is just more convenient to check for convergence only for the overall algorithm instead of for each E-step.
+We implemented a variational "EM flavored" algorithm which we described in detail in algorithm \ref{algo:EM}. Note that to be strictly an EM algorithm, we should maximize $\mathcal{L}$ with respect to $\bm{\phi}$ and $\bm{\gamma}$ all the way at each E-step. Instead, we alternate a single step of improvement with respect to the variational parameters with one step of improvement with respect to $\bm{\beta}$. Our algorithm has the same guarantee to increase the variational lower bound at each iteration, it is just more convenient to check for convergence only for the overall algorithm instead of for each E-step.
 
-\begin{algorithm}[tb]
+\begin{algorithm}[htb]
    \caption{Variational EM}
    \label{algo:EM}
 \begin{algorithmic}
@@ -287,37 +302,98 @@ We implemented a variational "EM flavored" algorithm which we described in detai
 \end{algorithm}
 
 \subsection{Gibbs Sampling}
-TODO
 
-%Once again, we consider a single document $\mathbf{w}$ with $N$ words. Recall that we are interested in the latent topics $\bm{\beta}_{1:K}$, the distribution over topics $\bm{\theta}$, and the per word topic assignments $z_{n}$, $n \in \{1,...,N\}$. 
+Once again, we consider a single document $\mathbf{w}$ with $N$ words. Recall that we are interested in the latent topics $\bm{\beta}_{1:K}$, the distribution over topics $\bm{\theta}$, and the per word topic assignments $z_{n}$, $n \in \{1,...,N\}$. 
 
-%We could derive conditional distributions for each of these latent variables, and therefore an LDA Gibbs Sampling algorithm, but we note that both $\bm{\theta}_{d}$ and $\bm{\beta}_k$ can be computed using the topic assignments $z_{d,n}$ which are sufficient statistics. This allows us to integrate out the multinomial parameters and simply sample $z_{d,n}$.
+We could derive conditional distributions for each of these latent variables, and therefore an LDA Gibbs sampling algorithm, but we note that both $\bm{\theta}_{d}$ and $\bm{\beta}_k$ can be computed using the topic assignments $z_{d,n}$ which are sufficient statistics. This allows us to integrate out the multinomial parameters and simply sample $z_{d,n}$. This strategy is referred to as \textit{collapsed} or \textit{Rao-Blackwellized} Gibbs sampling \cite{heinrich2005parameter}.
 
-\begin{algorithm}[tb]
+The conditional we want to sample the topic assignment $z_n$ from is given by :
+
+\begin{equation*}
+p(z_n|\mathbf{z}_{\neg n}, \bm{\alpha}, \bm{\eta}, \mathbf{w})
+\end{equation*}
+
+where $\mathbf{z}_{\neg n}$ denotes all topic allocations except for $z_n$ and where we have reintroduced the hyperparameter $\bm{\alpha}$ controlling the topics-per-document proportions as well as the hyperparameter $\bm{\eta}$ controlling the probability of a word being assign to a topic. We can develop this expression using Bayes' rule:
+
+\begin{equation}\label{eq:posterior1}
+p(z_n|\mathbf{z}_{\neg n}, \mathbf{w}, \bm{\alpha}, \bm{\eta}) \propto p(w_n|z_n,\mathbf{z}_{\neg n}, \mathbf{w}_{\neg n}, \bm{\eta}) p(z_n|\mathbf{z}_{\neg n}, \bm{\alpha})
+\end{equation}
+
+where we have used the fact that $\mathbf{w}\!\!\perp\!\!\bm{\alpha}|\mathbf{z}$ and $\mathbf{z}\!\!\perp\!\!\bm{\eta}$. Now, let's develop each term of equation \ref{eq:posterior1} for a given topic assignment $z_n = k$:
+
+\begin{align}\label{eq:term1}
+&p(w_n|z_n=k, \mathbf{z}_{\neg n}, \mathbf{w}_{\neg n}) \nonumber\\
+& \qquad = \int p(w_n|z_n=k, \bm{\beta}_k)p(\bm{\beta}_k|\mathbf{z}_{\neg n}, \mathbf{w}_{\neg n}) \diff \bm{\beta}_k \nonumber\\
+& \qquad = \frac{n_{\neg n,k}^{(w_n)} + \bm{\eta}_n}{\sum_{n'=1}^{V}\left( n_{\neg n, k} ^{(w_{n'})} + \bm{\eta}_{n'}\right)}
+\end{align}
+
+\begin{align}\label{eq:term2}
+&p(z_n=k|\mathbf{z}_{\neg n}) \nonumber\\
+& \qquad = \int p(z_n=k|\theta_{\mathbf{w}_n}) p(\theta_{\mathbf{w}_n}|\mathbf{z}_{\neg n}) \diff \theta_{\mathbf{w}_n} \nonumber\\
+& \qquad = \frac{n_{\neg n, k} ^{(\mathbf{w}_n)} + \bm{\alpha}_k}{\sum_{k'=1}^{(K)} \left( n_{\neg n, k'} ^{(\mathbf{w}_n)} + \bm{\alpha}_{k'} \right) }
+\end{align}
+
+The results obtained follow a $\mathrm{Dirichlet}\left(n_{\neg n,k}^{(w_n)} + \bm{\eta}_n\right)$ and a $\mathrm{Dirichlet}\left(n_{\neg n, k} ^{(\mathbf{w}_n)} + \bm{\alpha}_k\right)$, respectively. These distributions were obtained by the integration of the product between a Multinomial distribution and its Dirichlet conjugate prior. A detailed derivation of these equations is presented in \cite{heinrich2005parameter}.
+
+Putting together equations \ref{eq:term1} and \ref{eq:term2}, we obtain the posterior distribution from which we sample a new topic assignment $z_n$ :
+
+\begin{align}\label{eq:posterior_sampling}
+& p(z_n=k|\mathbf{z}_{\neg n}, \mathbf{w}) \nonumber\\
+& \qquad \propto \frac{n_{\neg n,k}^{(w_n)} + \bm{\eta}_n}{\sum_{n'=1}^{V}\left( n_{\neg n, k} ^{(w_{n'})} + \bm{\eta}_{n'}\right)}\frac{n_{\neg n, k} ^{(\mathbf{w}_n)} + \bm{\alpha}_k}{\sum_{k'=1}^{(K)} \left( n_{\neg n, k'} ^{(\mathbf{w}_n)} + \bm{\alpha}_{k'} \right) }
+\end{align}
+
+Finally, after the \textit{burn-in} period of the Gibbs sampling, we can find the expressions for the parameters we are looking for, namely the term-by-topic distribution $\bm{\beta}$ and the topic-by-document distribution $\bm{\theta}$ as such:
+
+
+\begin{equation}\label{eq:beta_final}
+\bm{\beta}_{k,n} = \frac{n_k ^{(w_n)} + \bm{\eta}_{t}}{\sum_{t=1}^{V} n_k ^{(t)} + \bm{\eta}_{t}}
+\end{equation}
+
+\begin{equation}\label{eq:theta_final}
+\bm{\theta}_{d,k} = \frac{n_m ^{(k)} + \bm{\alpha}_k}{\sum_{k=1}^{K} n_m ^{(k)} + \bm{\alpha}_k}
+\end{equation}
+
+Algorithm \ref{algo:Gibbs} presents the various steps of the implementation of LDA using collapsed Gibbs sampling to estimate the posterior distribution.
+
+
+\begin{algorithm}[htb]
    \caption{Gibbs Sampling}
    \label{algo:Gibbs}
 \begin{algorithmic}
    \STATE {\bfseries Input:} documents $\mathbf{w}_1,...,\mathbf{w}_D$   
+   \STATE Initialize hyperparameters $\bm{\alpha}$ and $\bm{\eta}$
    \STATE Randomly initialize topic assignments $z_{d,n}$ for all $d$, $n$
    \STATE Increment counters $n_{d,k}$ and $n_{k,n}$
    \REPEAT
    \FOR{$d = 1$ {\bfseries to} $D$}
   	  \FOR{$n = 1$ {\bfseries to} $N_d$}
   	  \STATE $n_{d,z_{d,n}} -\!\!= 1;\quad n_{z_{d,n},n} -\!\!= 1$
-	  \STATE $p(z=k|\cdot) = (n_{d,k} + \bm{\alpha}_k)\frac{n_{k,n} + \bm{\beta}_n}{\sum_{n'=1}^{N} n_{k,n'} + \bm{\beta}_{n'}}$
-	  \STATE Sample topic assignment $z_{d,n} \sim p(z=k|\cdot)$
+	  %\STATE $p(z=k|\cdot) = (n_{d,k} + \bm{\alpha}_k)\frac{n_{k,n} + \bm{\beta}_n}{\sum_{n'=1}^{N} n_{k,n'} + \bm{\beta}_{n'}}$
+	  %\STATE Sample topic assignment $z_{d,n} \sim p(z=k|\cdot)$
+	  \STATE Sample topic assignment $z_{d,n}$ from equation \ref{eq:posterior_sampling}
 	  \STATE $n_{d,z_{d,n}} +\!\!= 1;\quad n_{z_{d,n},n} +\!\!= 1$
   	  \ENDFOR
    \ENDFOR
-   \UNTIL{objective $\mathcal{L}$ doesn't improve anymore}
-   \STATE $\theta_{d,k} = \frac{n_{d,k} + \bm{\alpha}_{k}}{\sum_{k'=1}^{K} n_{d,k'} + \bm{\alpha}_{k'}}$ for all $d$, $k$
-   \STATE $\phi_{k,n} = \frac{n_{k,n} + \bm{\beta}_{n}}{\sum_{n'=1}^{N} n_{k,n'} + \bm{\beta}_{n'}}$ for all $k$, $n$
+   \UNTIL{convergence}
+   \STATE compute $\bm{\beta}_{k,n}$ from equation \ref{eq:beta_final} for all $d$, $k$
+   \STATE compute $\bm{\theta}_{d,k}$ from equation \ref{eq:theta_final} for all $k$, $n$
 
 \end{algorithmic}
 \end{algorithm}
 
 
+
+\subsubsection{Choice of hyperparameters}
+
+Both $\bm{\alpha}$ and $\bm{\eta}$ are hyperparameters for our model. Typically, the a priori assumption of LDA is that all words are equally likely to be assigned to a topic, and all topics have equal chance of being assigned to a document. In this case, values of $50/K$ for each component of $\bm{\alpha}$ and $0.01$ for each component of $\bm{\eta}$ have been reported to yield good results \cite{griffiths2004finding}.
+
 \section{Experiments}
+The experiments conducted with both implementations of the latent Dirichlet allocation, one using variational inference and the other using Gibbs sampling to estimate the posterior distribution of our model (equation \ref{eq:posteriorLDA}), used data taken from the \textit{20 Newsgroups} dataset \cite{20_newsgroups}.
+
+\subsection{Querying}
+TODO
+
+\subsection{Perplexity}
 TODO
 
 \section{Results}
@@ -325,10 +401,10 @@ TODO
 
 % In the unusual situation where you want a paper to appear in the
 % references without citing it in the main text, use \nocite
-\nocite{langley00}
+\nocite{blei2012probabilistic}
 
-\bibliography{example_paper}
 \bibliographystyle{icml2017}
+\bibliography{report}
 
 \end{document} 
 

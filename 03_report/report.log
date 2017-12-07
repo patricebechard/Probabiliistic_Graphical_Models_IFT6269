@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  4 DEC 2017 15:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  6 DEC 2017 21:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -373,21 +373,21 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 54.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 56.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
@@ -420,7 +420,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box37
-Package hyperref Info: Link coloring ON on input line 54.
+Package hyperref Info: Link coloring ON on input line 56.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -430,9 +430,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count134
 )
-LaTeX Info: Redefining \ref on input line 54.
-LaTeX Info: Redefining \pageref on input line 54.
-LaTeX Info: Redefining \nameref on input line 54.
+LaTeX Info: Redefining \ref on input line 56.
+LaTeX Info: Redefining \pageref on input line 56.
+LaTeX Info: Redefining \nameref on input line 56.
 
 (./report.out) (./report.out)
 \@outlinefile=\write3
@@ -441,19 +441,19 @@ LaTeX Info: Redefining \nameref on input line 54.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\\' on input line 82.
+(hyperref)                removing `\\' on input line 84.
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 82.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 84.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 82.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 84.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 82.
-LaTeX Font Info:    Try loading font information for U+msa on input line 82.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 84.
+LaTeX Font Info:    Try loading font information for U+msa on input line 84.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 82.
+LaTeX Font Info:    Try loading font information for U+msb on input line 84.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -462,100 +462,108 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \c@@affilmg=\count136
 
 
-Package hyperref Warning: Ignoring empty anchor on input line 93.
+Package hyperref Warning: Ignoring empty anchor on input line 96.
 
-LaTeX Font Info:    Try loading font information for OML+ptm on input line 93.
+LaTeX Font Info:    Try loading font information for OML+ptm on input line 96.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omlptm.fd
 File: omlptm.fd 
 )
 LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <9> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 93.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 96.
 
-Underfull \hbox (badness 2269) in paragraph at lines 93--93
+Underfull \hbox (badness 2269) in paragraph at lines 96--96
 [][][]| $[]$\OT1/ptm/m/n/9 Equal con-tri-bu-tion  $[]$Universit[]e de Montr[]ea
 l, Montr[]eal,
  []
 
 
-Underfull \hbox (badness 1067) in paragraph at lines 93--93
+Underfull \hbox (badness 1067) in paragraph at lines 96--96
 \OT1/ptm/m/n/9 Canada $[]$McGill Uni-ver-sity, Montr[]eal, Canada. Cor-re-spon-
 
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 95.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 98.
 <LDA_graph_model.png, id=5, 610.28pt x 270.00874pt>
 File: LDA_graph_model.png Graphic file (type png)
  <use LDA_graph_model.png>
-Package pdftex.def Info: LDA_graph_model.png used on input line 123.
+Package pdftex.def Info: LDA_graph_model.png used on input line 126.
 (pdftex.def)             Requested size: 234.8775pt x 103.91866pt.
 
-Underfull \vbox (badness 2027) has occurred while \output is active []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 136--142
-
+Overfull \hbox (7.18082pt too wide) detected at line 140
+ []$[]   [] \OML/cmm/m/it/9 p\OT1/cmr/m/n/9 (\OML/cmm/b/it/9 ^^L[]\OMS/cmsy/m/n
+/9 j\OML/cmm/b/it/9 ^^Q\OT1/cmr/m/n/9 ) [] \OML/cmm/m/it/9 p\OT1/cmr/m/n/9 (\OM
+L/cmm/b/it/9 ^^R[]\OMS/cmsy/m/n/9 j\OML/cmm/b/it/9 \OT1/cmr/m/n/9 ) [] \OML/cm
+m/m/it/9 p\OT1/cmr/m/n/9 (\OML/cmm/m/it/9 z[]\OMS/cmsy/m/n/9 j\OML/cmm/b/it/9 ^
+^R[]\OT1/cmr/m/n/9 )\OML/cmm/m/it/9 p\OT1/cmr/m/n/9 (\OML/cmm/m/it/9 w[]\OMS/cm
+sy/m/n/9 j\OML/cmm/m/it/9 z[]; \OML/cmm/b/it/9 ^^L[]\OT1/cmr/m/n/9 )$ []  
  []
 
 
-Underfull \vbox (badness 4181) has occurred while \output is active []
+Underfull \hbox (badness 10000) in paragraph at lines 140--147
 
- [1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+ []
+
+[1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 
  <./LDA_graph_model.png>]
-Overfull \hbox (1.81685pt too wide) in paragraph at lines 185--185
+Overfull \hbox (5.1501pt too wide) in paragraph at lines 200--200
 [] 
  []
 
-
-Underfull \vbox (badness 2529) has occurred while \output is active []
-
-
-<LDA_graph_model2.png, id=41, 601.24625pt x 185.69376pt>
+[2] <LDA_graph_model2.png, id=81, 601.24625pt x 185.69376pt>
 File: LDA_graph_model2.png Graphic file (type png)
 
 <use LDA_graph_model2.png>
-Package pdftex.def Info: LDA_graph_model2.png used on input line 204.
+Package pdftex.def Info: LDA_graph_model2.png used on input line 219.
 (pdftex.def)             Requested size: 234.8775pt x 72.5421pt.
- [2 <./LDA_graph_model2.png>]
+ [3 <./LDA_graph_model2.png>]
+Overfull \hbox (2.59763pt too wide) detected at line 320
+\OML/cmm/m/it/10 p\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 z[]\OMS/cmsy/m/n/10 j\OT1/c
+mr/bx/n/10 z[]\OML/cmm/m/it/10 ; \OT1/cmr/bx/n/10 w\OML/cmm/m/it/10 ; \OML/cmm/
+b/it/10 \OML/cmm/m/it/10 ; \OML/cmm/b/it/10 ^^Q\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n
+/10 / \OML/cmm/m/it/10 p\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 w[]\OMS/cmsy/m/n/10 j
+\OML/cmm/m/it/10 z[]; \OT1/cmr/bx/n/10 z[]\OML/cmm/m/it/10 ; \OT1/cmr/bx/n/10 w
+[]\OML/cmm/m/it/10 ; \OML/cmm/b/it/10 ^^Q\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 p\OT
+1/cmr/m/n/10 (\OML/cmm/m/it/10 z[]\OMS/cmsy/m/n/10 j\OT1/cmr/bx/n/10 z[]\OML/cm
+m/m/it/10 ; \OML/cmm/b/it/10 \OT1/cmr/m/n/10 )
+ []
 
-Package natbib Warning: Citation `langley00' undefined on input line 328.
 
-No file report.bbl.
+Underfull \vbox (badness 1728) has occurred while \output is active []
 
-Package natbib Warning: There were undefined citations.
+ [4]
+(./report.bbl
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 70.
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+))
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 409.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 333.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [3]
-[4
-
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 333.
+[5]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 409.
  (./report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 333.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 333.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 409.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 409.
 Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 333.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 409.
  ) 
 Here is how much of TeX's memory you used:
- 7226 strings out of 493089
- 103151 string characters out of 6134842
- 208672 words of memory out of 5000000
- 10490 multiletter control sequences out of 15000+600000
- 34197 words of font info for 79 fonts, out of 8000000 for 9000
+ 7324 strings out of 493089
+ 105005 string characters out of 6134842
+ 211265 words of memory out of 5000000
+ 10559 multiletter control sequences out of 15000+600000
+ 36396 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,11n,45p,633b,772s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,12n,45p,953b,772s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texl
 ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texli
-ve/2015/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/local/te
+ve/2015/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
 live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texli
 ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive
@@ -563,22 +571,26 @@ ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive
 015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/201
 5/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/201
 5/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb></usr/local/texlive
-/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2
-015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2015
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2015/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2015/texmf
--dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2015/texmf-dis
-t/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2015/texmf
--dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/font
-s/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/ur
-w/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/ut
-mri8a.pfb>
-Output written on report.pdf (4 pages, 243160 bytes).
+/2015/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib9.pfb></usr/local/tex
+live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texli
+ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/
+2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/201
+5/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2015/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2015/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2015/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2015/texmf-dist
+/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2015/texmf-
+dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texmf-dist/fon
+ts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/u
+rw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/u
+tmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb
+>
+Output written on report.pdf (5 pages, 296971 bytes).
 PDF statistics:
- 210 PDF objects out of 1000 (max. 8388607)
- 175 compressed objects within 2 object streams
- 71 named destinations out of 1000 (max. 500000)
+ 290 PDF objects out of 1000 (max. 8388607)
+ 249 compressed objects within 3 object streams
+ 92 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
