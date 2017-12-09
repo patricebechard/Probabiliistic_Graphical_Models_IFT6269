@@ -388,13 +388,45 @@ Algorithm \ref{algo:Gibbs} presents the various steps of the implementation of L
 Both $\bm{\alpha}$ and $\bm{\eta}$ are hyperparameters for our model. Typically, the a priori assumption of LDA is that all words are equally likely to be assigned to a topic, and all topics have equal chance of being assigned to a document. In this case, values of $50/K$ for each component of $\bm{\alpha}$ and $0.01$ for each component of $\bm{\eta}$ have been reported to yield good results \cite{griffiths2004finding}.
 
 \section{Experiments}
-The experiments conducted with both implementations of the latent Dirichlet allocation, one using variational inference and the other using Gibbs sampling to estimate the posterior distribution of our model (equation \ref{eq:posteriorLDA}), used data taken from the \textit{20 Newsgroups} dataset \cite{20_newsgroups}.
-
-\subsection{Querying}
-TODO
+The experiments conducted with both implementations of the latent Dirichlet allocation, one using variational inference and the other using Gibbs sampling to estimate the posterior distribution of our model (equation \ref{eq:posteriorLDA}), used data taken from the \textit{20 Newsgroups} dataset \cite{20_newsgroups}. By training the models on a subset of the dataset, it is possible to infer the topic-by-document distribution $\bm{\theta}$ for unseen documents. To make sure that the model generalizes well to new data, we use the \textit{perplexity}. This section presents both the concept of perplexity as well as how to infer the $\bm{\theta}$ distribution using \textbf{xxxxxxxxxxx} and query sampling.
 
 \subsection{Perplexity}
-TODO
+
+Perplexity is a measure of the generalization performance of models and is used by convention in language modeling. It is defined algebraically as the inverse of the geometric mean per-word likelihood. A lower perplexity score indicates a better generalization performance for a model. For a test set of $D$ documents, the perplexity is given by :
+
+\begin{align}\label{eq:perplexity}
+\mathrm{perplexity}(D_{\mathrm{train}}) & = \sum_{d=1}^{D} p(\mathbf{w_d})^{-1/N_d} \nonumber\\
+										& = \exp\left[-\frac{\sum_{d=1}^D \log p(\mathbf{w}_d)}{\sum_{d=1}^D N_d}\right]
+\end{align}
+
+For LDA, the likelihood found $p(\mathbf{w}_d)$ found in equation \ref{eq:perplexity} can be expressed as the parameters $\bm{\beta}$ and $\bm{\theta}$. If we develop the expression for the likelihood, we have :
+
+\begin{align}
+p(\mathbf{w}_d) & = \prod_{n=1}^{N_d} \sum_{k=1} ^K p(w_{d,n}=t|z_{n,d}=k) \cdot p(z_{d,n}=k|d=d) \nonumber\\
+				& = \prod_{t=1}^{V} \left( \sum_{k=1}^K \bm{\beta}_{k,t} \cdot \bm{\theta}_{d,k} \right)^{n_d ^{(t)}}\nonumber\\
+\log p(\mathbf{w}_d) & = \sum_{t=1}^V n_d ^{(t)} \log \left( \sum_{k=1}^K \bm{\beta}_{k,t} \cdot \bm{\theta}_{d,k} \right)
+\end{align}
+
+Here, $n_d ^{(t)}$ is the number of times term $t$ appears in document $d$. Note here that the term $\bm{\theta}_{d,k}$ has to be obtained for the new test documents via methods shown in the subsequent sections.
+
+\subsection{xxxxxx}
+
+\subsection{Query sampling}
+
+We consider the query (vector of words) $\tilde{\mathbf{w}}$ (note that we can have multiple queries at the same time, but we only consider one here for simplicity). Normally, the task of querying consists of finding similarity between the query and other documents by estimating the posterior distribution $\tilde{\mathbf{z}}$ given the query and the state of the LDA at the end of the training (represented by the Markov state $\bm{\mathcal{M}}=\{ \mathbf{z},\mathbf{w} \}$). Here, we want to find this distribution to compute the perplexity of our model. The algorithm is pretty straightforward and consists of assign topics randomly to words in $\tilde{\mathbf{w}}$ and to perform a certain number of loops through Gibbs sampling update on our query only. The distribution from which we sample $\tilde{z}$ from is given below :
+
+\begin{align}\label{eq:posterior_query}
+& p(\tilde{z}_n=k|\tilde{w}_n=t, \tilde{\mathbf{z}}_{\neg n},\tilde{\mathbf{w}}_{\neg n};\bm{\mathcal{M}}) \nonumber\\
+& \quad = \frac{n_k ^{(t)} + \tilde{n}_{k, \neg n} ^{(t)} + \bm{\eta}_t}{\sum_{t'=1}^V n_k ^{(t')} + \tilde{n}_{k, \neg n} ^{(t')} + \bm{\eta}_t'} \cdot \frac{n_{\tilde{d},\neg n}^{(k)} + \bm{\alpha}_k}{\sum_{k'=1}^K n_{\tilde{d}^{(k')}} + \bm{\alpha}_k'}
+\end{align}
+
+where $\tilde{n}_k ^{(t)}$ is the number of observations of term t and topic k in the query. With this posterior distribution, we obtain the topic-per-document distribution for the document:
+
+\begin{equation}
+\bm{\theta}_{\tilde{m},k} = \frac{n_{\tilde{m}}^{(k)} + \bm{\alpha}_k}{\sum_{k'=1}^K n_{\tilde{m}}^{(k')} + \bm{\alpha}_k'}
+\end{equation}
+
+It is important that the size of the unknown documents be smaller than the training set, because the posterior (equation \ref{eq:posterior_query}) distorts the topic distribution obtained from the training.
 
 \section{Results}
 TODO
