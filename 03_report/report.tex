@@ -166,9 +166,9 @@ Latent Dirichlet Allocation is an extension of the probabilistic latent semantic
 p(\mathbf{w},w_{n}) = p(\mathbf{w}) \sum_z p(w_n|z)p(z|\mathbf{w})
 \end{equation*}
 
-Some problems arise with this model. First, while it does make it possible for a document to contain multiple topics, the model only learns the topic mixtures $p(z|\mathbf{w})$ for the documents it has seen during the training, making it difficult to use it to assign probability to previously unseen documents. Furthermore, the number of parameters which the model tries to estimate grows linearly with the number of documents in the training set, which makes the model prone to overfitting. LDA overcome both of the main problems with pLSA by adding a Dirichlet prior over the documents, defining a complete generative model.
+Some problems arise with this model. First, while it does make it possible for a document to contain multiple topics, the model only learns the topic mixtures $p(z|\mathbf{w})$ for the documents it has seen during the training, making it difficult to use it to assign probability to previously unseen documents. Furthermore, the number of parameters which the model tries to estimate grows linearly with the number of documents in the training set, which makes the model prone to overfitting. LDA overcomes both of the main problems with pLSA by adding a Dirichlet prior over the documents, defining a complete generative model.
 
-However, LDA is by no means perfect. There have been many new ways to enhance the model to make it more realistic by relaxing some assumptions made by the model. The bag-of-words assumption is fine for our use of the LDA, which is to uncover the topics present in a document and to assign a certain word to a topic. For more complicated goals, such as generating text, the assumption becomes inappropriate. There have been a number of extensions of the model that relaxes the bag-of-words assumption, for example, by combining the LDA with a Hidden Markov Model (HMM) to take into account the ordering of the words \cite{griffiths2005integrating}. It is also possible to relax the assumption that the ordering of the documents is irrelevant if we wish to find the evolution of certain topics over time, for example. A dynamic topic model would then be more appropriated than the normal LDA \cite{blei2006dynamic}.
+However, LDA is by no means perfect. There have been many new ways to enhance the model to make it more realistic by relaxing some assumptions made by the model. The bag-of-words assumption is fine for our use of LDA, which is to uncover the topics present in a document and to assign a certain word to a topic. For more complicated goals, such as generating text, the assumption becomes inappropriate. There have been a number of extensions of the model that relax the bag-of-words assumption, for example, by combining the LDA with a Hidden Markov Model (HMM) to take into account the ordering of the words \cite{griffiths2005integrating}. It is also possible to relax the assumption that the ordering of the documents is irrelevant if we wish to find the evolution of certain topics over time, for example. A dynamic topic model would then be more appropriate than the classic LDA \cite{blei2006dynamic}.
 
 \section{Methods}
 
@@ -195,7 +195,7 @@ Because of the integral over $\bm{\theta}$ and the sum over $\mathbf{z}$ inside 
 \log p(\mathbf{w} | \bm{\alpha}, \bm{\beta}) 
 &= \log \int \sum_{\mathbf{z}} \frac{p (\bm{\theta}, \mathbf{z}, \mathbf{w} | \bm{\alpha}, \bm{\beta}) q(\bm{\theta}, \mathbf{z})}{q(\bm{\theta}, \mathbf{z})}  \diff\bm{\theta} \\
 &= \mathbb{E}_q \left[\log \int \sum_{\mathbf{z}} \frac{p (\bm{\theta}, \mathbf{z}, \mathbf{w} | \bm{\alpha}, \bm{\beta})}{q(\bm{\theta}, \mathbf{z})}  \diff\bm{\theta}\right] \\
-&\geq \mathbb{E}_q \left[\log p(\bm{\theta}, \mathbf{z}, \mathbf{w} | \bm{\alpha}, \bm{\beta})\right] + \mathbb{E}_q \left[\log q(\bm{\theta}, \mathbf{z})\right] \\
+&\geq \mathbb{E}_q \left[\log p(\bm{\theta}, \mathbf{z}, \mathbf{w} | \bm{\alpha}, \bm{\beta})\right] - \mathbb{E}_q \left[\log q(\bm{\theta}, \mathbf{z})\right] \\
 &= \mathcal{L}(q, \bm{\alpha}, \bm{\beta})
 \end{align*}
 where we have introduced an arbitrary distribution $q(\bm{\theta}, \mathbf{z})$ over the problematic latent variables $\bm{\theta}$ and $\mathbf{z}$, and the last step follows from Jensen's inequality.
@@ -227,7 +227,7 @@ Now variational inference consists in solving the following optimization problem
 \begin{equation}
 (\bm{\gamma}^*, \bm{\phi}^*) =
 \underset{\bm{\gamma}, \bm{\phi}}{\text{arg min}}\;
-	\mathrm{KL}(q(\bm{\theta}, \mathbf{z} | \bm{\gamma}, \bm{\phi}) || p(\bm{\theta}, \mathbf{z} | \mathbf{w}, \bm{\alpha}, \bm{\beta}))
+	\mathrm{KL}(q(\bm{\theta}, \mathbf{z} | \bm{\gamma}, \bm{\phi})~||~p(\bm{\theta}, \mathbf{z} | \mathbf{w}, \bm{\alpha}, \bm{\beta}))
 \end{equation}
 
 Note that $q(\bm{\theta}, \mathbf{z} | \mathbf{w}, \bm{\gamma}^*, \bm{\phi}^*)$ is actually a conditional distribution varying as a function of $\mathbf{w}$ because the optimization objective depends on $\mathbf{w}$. It can thus be seen as an approximation to the posterior $p(\bm{\theta}, \mathbf{z} | \mathbf{w}, \bm{\alpha}, \bm{\beta})$.

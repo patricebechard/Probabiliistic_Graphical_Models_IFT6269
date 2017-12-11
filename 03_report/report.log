@@ -1,7 +1,6 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  8 DEC 2017 15:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.30)  10 DEC 2017 19:00
 entering extended mode
  restricted \write18 enabled.
- file:line:error style messages enabled.
  %&-line parsing enabled.
 **report.tex
 (./report.tex
@@ -562,11 +561,11 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 441.
 Here is how much of TeX's memory you used:
  7332 strings out of 493089
  105112 string characters out of 6134842
- 211321 words of memory out of 5000000
+ 210321 words of memory out of 5000000
  10561 multiletter control sequences out of 15000+600000
  36396 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,13n,45p,953b,772s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,13n,45p,947b,772s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/te
@@ -596,7 +595,7 @@ t/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/
 type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/
 times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr
 8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on report.pdf (6 pages, 320063 bytes).
+Output written on report.pdf (6 pages, 320013 bytes).
 PDF statistics:
  310 PDF objects out of 1000 (max. 8388607)
  266 compressed objects within 3 object streams
