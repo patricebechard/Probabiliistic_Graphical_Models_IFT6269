@@ -390,8 +390,23 @@ Both $\bm{\alpha}$ and $\bm{\eta}$ are hyperparameters for our model. Typically,
 \section{Experiments}
 The experiments conducted with both implementations of the latent Dirichlet allocation, one using variational inference and the other using Gibbs sampling to estimate the posterior distribution of our model (equation \ref{eq:posteriorLDA}), used data taken from the \textit{20 Newsgroups} dataset \cite{20_newsgroups}. By training the models on a subset of the dataset, it is possible to infer the topic-by-document distribution $\bm{\theta}$ for unseen documents. To make sure that the model generalizes well to new data, we use the \textit{perplexity}. This section presents both the concept of perplexity as well as how to infer the $\bm{\theta}$ distribution using \textbf{xxxxxxxxxxx} and query sampling.
 
-\subsection{Perplexity}
+\subsection{Dataset and Preprocessing}
+The \textit{20 Newsgroups} dataset contains approximately 20,000 newsgroup documents, partitioned nearly evenly across 20 different newsgroups, each corresponding to a different subject. Some of the newsgroups are very closely related to each other while others are unrelated. Figure \ref{20_newsgroups} roughly partitions the 20 newsgroups by subject matter. \\
+TODO: add training/test split from sklearn \\
+TODO: add preprocessing steps \\
 
+\begin{figure}[ht]
+\vskip 0.2in
+\begin{center}
+\centerline{\includegraphics[width=\columnwidth]{20_newsgroups}}
+\caption{Newsgroups classified by overlap in subjects}
+\label{20_newsgroups}
+\end{center}
+\vskip -0.2in
+\end{figure} 
+
+
+\subsection{Perplexity}
 Perplexity is a measure of the generalization performance of models and is used by convention in language modeling. It is defined algebraically as the inverse of the geometric mean per-word likelihood. A lower perplexity score indicates a better generalization performance for a model. For a test set of $D$ documents, the perplexity is given by :
 
 \begin{align}\label{eq:perplexity}
