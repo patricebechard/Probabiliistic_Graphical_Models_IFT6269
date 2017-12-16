@@ -170,7 +170,7 @@ Some problems arise with this model. First, while it does make it possible for a
 
 However, LDA is by no means perfect. There have been many new ways to enhance the model to make it more realistic by relaxing some assumptions made by the model. The bag-of-words assumption is fine for our use of LDA, which is to uncover the topics present in a document and to assign a certain word to a topic. For more complicated goals, such as generating text, the assumption becomes inappropriate. There have been a number of extensions of the model that relax the bag-of-words assumption, for example, by combining the LDA with a Hidden Markov Model (HMM) to take into account the ordering of the words \cite{griffiths2005integrating}. It is also possible to relax the assumption that the ordering of the documents is irrelevant if we wish to find the evolution of certain topics over time, for example. A dynamic topic model would then be more appropriate than the classic LDA \cite{blei2006dynamic}.
 
-\section{Methods}
+\section{Algorithms}
 
 \subsection{Variational EM}
 To make our life easier, we derive a variational EM algorithm for a slightly simpler graphical model for LDA (the one presented in the original paper). We remove the Dirichlet prior over topics, this corresponds to removing the dependence of the $\bm{\beta}$ plate on the $\bm{\eta}$ random variable (see Figure \ref{graph_model2}, left). By doing so, we lose our ability to smooth topics through the $\bm{\eta}$ parameter.
@@ -217,7 +217,7 @@ where the dirichlet parameters $\bm{\gamma}$ and the multinomial parameters $\bm
 \vskip 0.2in
 \begin{center}
 \centerline{\includegraphics[width=\columnwidth]{LDA_graph_model2}}
-\caption{Graphical model corresponding to the generative process for LDA.}
+\caption{(Left) Graphical model representation of LDA without prior over topics. (Right) Graphical model representation of the variational distribution used to approximate the posterior.}
 \label{graph_model2}
 \end{center}
 \vskip -0.2in
@@ -387,13 +387,13 @@ Algorithm \ref{algo:Gibbs} presents the various steps of the implementation of L
 
 Both $\bm{\alpha}$ and $\bm{\eta}$ are hyperparameters for our model. Typically, the a priori assumption of LDA is that all words are equally likely to be assigned to a topic, and all topics have equal chance of being assigned to a document. In this case, values of $50/K$ for each component of $\bm{\alpha}$ and $0.01$ for each component of $\bm{\eta}$ have been reported to yield good results \cite{griffiths2004finding}.
 
-\section{Experiments}
-The experiments conducted with both implementations of the latent Dirichlet allocation, one using variational inference and the other using Gibbs sampling to estimate the posterior distribution of our model (equation \ref{eq:posteriorLDA}), used data taken from the \textit{20 Newsgroups} dataset \cite{20_newsgroups}. By training the models on a subset of the dataset, it is possible to infer the topic-by-document distribution $\bm{\theta}$ for unseen documents. To make sure that the model generalizes well to new data, we use the \textit{perplexity}. This section presents both the concept of perplexity as well as how to infer the $\bm{\theta}$ distribution using \textbf{xxxxxxxxxxx} and query sampling.
+\section{Experimental Methods}
+For experiments with both implementations of LDA, we used the \textit{20 Newsgroups} dataset \cite{20_newsgroups}. We train the models on a subset of the dataset, and assess generalization to unseen data using the \textit{perplexity} metric. In order to infer the distribution over topics for documents unseen during training (the $\bm{\theta}$ parameter) with Gibbs sampling, we use a method called query sampling. With the model trained with variational EM, we simply use variational inference. 
 
 \subsection{Dataset and Preprocessing}
-The \textit{20 Newsgroups} dataset contains approximately 20,000 newsgroup documents, partitioned nearly evenly across 20 different newsgroups, each corresponding to a different subject. Some of the newsgroups are very closely related to each other while others are unrelated. Figure \ref{20_newsgroups} roughly partitions the 20 newsgroups by subject matter. \\
-TODO: add training/test split from sklearn \\
-TODO: add preprocessing steps \\
+The \textit{20 Newsgroups} dataset contains approximately 20,000 newsgroup documents, partitioned nearly evenly across 20 different newsgroups, each corresponding to a different subject. Some of the newsgroups are very closely related to each other while others are unrelated. Figure \ref{20_newsgroups} roughly partitions the 20 newsgroups by subject matter. 
+
+We use the train-test partition provided by sklearn (60\%-40\%), and preprocess the data by tokenizing, removing stop-words and punctuation, lemmatizing with the WordNetLemmatizer from the nltk library, and keeping only the 3000 most frequent words.
 
 \begin{figure}[ht]
 \vskip 0.2in
@@ -424,9 +424,9 @@ p(\mathbf{w}_d) & = \prod_{n=1}^{N_d} \sum_{k=1} ^K p(w_{d,n}=t|z_{n,d}=k) \cdot
 
 Here, $n_d ^{(t)}$ is the number of times term $t$ appears in document $d$. Note here that the term $\bm{\theta}_{d,k}$ has to be obtained for the new test documents via methods shown in the subsequent sections.
 
-\subsection{xxxxxx}
-
 \subsection{Query sampling}
+
+In order to infer the distribution over topics for documents unseen during training (the $\bm{\theta}$ parameter) with Gibbs sampling, we use a method called query sampling.
 
 We consider the query (vector of words) $\tilde{\mathbf{w}}$ (note that we can have multiple queries at the same time, but we only consider one here for simplicity). Normally, the task of querying consists of finding similarity between the query and other documents by estimating the posterior distribution $\tilde{\mathbf{z}}$ given the query and the state of the LDA at the end of the training (represented by the Markov state $\bm{\mathcal{M}}=\{ \mathbf{z},\mathbf{w} \}$). Here, we want to find this distribution to compute the perplexity of our model. The algorithm is pretty straightforward and consists of assign topics randomly to words in $\tilde{\mathbf{w}}$ and to perform a certain number of loops through Gibbs sampling update on our query only. The distribution from which we sample $\tilde{z}$ from is given below :
 
@@ -444,7 +444,48 @@ where $\tilde{n}_k ^{(t)}$ is the number of observations of term t and topic k i
 It is important that the size of the unknown documents be smaller than the training set, because the posterior (equation \ref{eq:posterior_query}) distorts the topic distribution obtained from the training.
 
 \section{Results}
-TODO
+
+\subsection{Choosing the Number of Topics}
+We pick the number of topics which gives the best generalization performance (the best test-set perplexity). 
+
+For the variational inference implementation, we ran into some numerical issues to compute the likelihood of documents. Thus we computed training and test set perplexity with the batch variational inference implementation by sklearn. As we can see in figure \ref{perplexity}, training-set perplexity always goes down when we increase the number of topics, but the best test-set perplexity is attained for 12 topics (for more topics, we overfit).
+
+\begin{figure}[ht]
+\vskip 0.2in
+\begin{center}
+\centerline{\includegraphics[width=\columnwidth]{perplexity_as_a_function_of_number_of_topics}}
+\caption{Variational inference implementation: the best test set perplexity is reached at 12 topics.}
+\label{perplexity}
+\end{center}
+\vskip -0.2in
+\end{figure} 
+
+TODO add similar curve for implementation with Gibbs sampling
+
+\subsection{Visual Inspection of Topics}
+We trained both our models with 12 topics in order to visually inspect the learnt topics. The most probable words for each topic for LDA trained with our model of variational EM are in table \ref{tab:top_words_LDA}.
+
+\begin{table}[htp]
+\caption{\label{tab:top_words_LDA} Most probable words associated to some topics for LDA trained with variational EM.}
+\vskip 0.15in
+\begin{center}
+\begin{small}
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c}
+\textsc{Space} & \textsc{Computer} & \textsc{Religion} & \textsc{Numbers} & \textsc{Cyber Security} & \textsc{Genocide} & \textsc{Sport} & \textsc{Politics} & \textsc{Garbage} \\
+\hline 
+space & use & god & 10 & key & armenian & game & gun & ax \\
+nasa & windows & people & 00 & government & people & team & state & max \\
+program & file & believe & 25 & encryption & jews & year & control & g9v \\
+earth & card & jesus & 15 & privacy & turkish & games & health & b8f \\
+launch & window & know & 11 & security & war & time & law & 1d9
+\end{tabular}
+\end{small}
+\end{center}
+\label{default}
+\end{table}%
+
+TODO put table at the top of the page on both columns (don't know how to do) \\
+TODO add similar table for implementation with Gibbs sampling
 
 % In the unusual situation where you want a paper to appear in the
 % references without citing it in the main text, use \nocite
