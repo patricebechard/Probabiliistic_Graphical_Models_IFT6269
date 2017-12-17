@@ -1,6 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.30)  16 DEC 2017 15:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  17 DEC 2017 13:25
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
 **report.tex
 (./report.tex
@@ -508,51 +509,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 140--147
 
 
  <./LDA_graph_model.png>]
-
-Package natbib Warning: Citation `blei2003latent' on page 2 undefined on input 
-line 161.
-
-
-Package natbib Warning: Citation `darling2011theoretical' on page 2 undefined o
-n input line 161.
-
-
-Package natbib Warning: Citation `griffiths2002gibbs' on page 2 undefined on in
-put line 161.
-
-
-Package natbib Warning: Citation `heinrich2005parameter' on page 2 undefined on
- input line 161.
-
-
-Package natbib Warning: Citation `hofmann1999probabilistic' on page 2 undefined
- on input line 163.
-
-
-Package natbib Warning: Citation `griffiths2005integrating' on page 2 undefined
- on input line 171.
-
-
-Package natbib Warning: Citation `blei2006dynamic' on page 2 undefined on input
- line 171.
-
-
 Overfull \hbox (5.1501pt too wide) in paragraph at lines 200--200
 [] 
  []
 
-[2] <LDA_graph_model2.png, id=59, 600.2425pt x 165.61874pt>
+[2] <LDA_graph_model2.png, id=81, 600.2425pt x 165.61874pt>
 File: LDA_graph_model2.png Graphic file (type png)
 
 <use LDA_graph_model2.png>
 Package pdftex.def Info: LDA_graph_model2.png used on input line 219.
 (pdftex.def)             Requested size: 234.8775pt x 64.80585pt.
-
-
-Package natbib Warning: Citation `heinrich2005parameter' on page 3 undefined on
- input line 308.
-
-[3 <./LDA_graph_model2.png>]
+ [3 <./LDA_graph_model2.png>]
 Overfull \hbox (2.59763pt too wide) detected at line 320
 \OML/cmm/m/it/10 p\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 z[]\OMS/cmsy/m/n/10 j\OT1/c
 mr/bx/n/10 z[]\OML/cmm/m/it/10 ; \OT1/cmr/bx/n/10 w\OML/cmm/m/it/10 ; \OML/cmm/
@@ -565,23 +532,10 @@ m/m/it/10 ; \OML/cmm/b/it/10 \OT1/cmr/m/n/10 )
  []
 
 
-Underfull \vbox (badness 5417) has occurred while \output is active []
+Underfull \vbox (badness 1728) has occurred while \output is active []
 
-
-
-Package natbib Warning: Citation `heinrich2005parameter' on page 4 undefined on
- input line 336.
-
-
-Package natbib Warning: Citation `griffiths2004finding' on page 4 undefined on 
-input line 388.
-
-[4]
-
-Package natbib Warning: Citation `20_newsgroups' on page 5 undefined on input l
-ine 391.
-
-<20_newsgroups.png, id=122, 843.15pt x 305.14pt>
+ [4]
+<20_newsgroups.png, id=152, 843.15pt x 305.14pt>
 File: 20_newsgroups.png Graphic file (type png)
  <use 20_newsgroups.png>
 Package pdftex.def Info: 20_newsgroups.png used on input line 401.
@@ -595,7 +549,7 @@ Overfull \hbox (20.95828pt too wide) in paragraph at lines 423--423
  []
 
 [5 <./20_newsgroups.png>]
-<perplexity_as_a_function_of_number_of_topics.png, id=156, 433.62pt x 289.08pt>
+<perplexity_as_a_function_of_number_of_topics.png, id=188, 433.62pt x 289.08pt>
 File: perplexity_as_a_function_of_number_of_topics.png Graphic file (type png)
 <use perplexity_as_a_function_of_number_of_topics.png>
 Package pdftex.def Info: perplexity_as_a_function_of_number_of_topics.png used 
@@ -609,30 +563,31 @@ Overfull \hbox (240.29033pt too wide) in paragraph at lines 473--483
  [] 
  []
 
+(./report.bbl [6 <./perplexity_as_a_function_of_number_of_topics.png>]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 70.
 
-Package natbib Warning: Citation `blei2012probabilistic' undefined on input lin
-e 492.
+(/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+))
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 504.
+ [7
 
-No file report.bbl.
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 504.
 
-Package natbib Warning: There were undefined citations.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 497.
-[6 <./perplexity_as_a_function_of_number_of_topics.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 497.
- (./report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 497.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 497.
+(./report.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 504.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 504.
 Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 497.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 504.
  ) 
 Here is how much of TeX's memory you used:
- 7286 strings out of 493089
- 104233 string characters out of 6134842
- 210423 words of memory out of 5000000
- 10525 multiletter control sequences out of 15000+600000
- 37605 words of font info for 83 fonts, out of 8000000 for 9000
+ 7357 strings out of 493089
+ 105638 string characters out of 6134842
+ 211816 words of memory out of 5000000
+ 10576 multiletter control sequences out of 15000+600000
+ 38120 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  29i,13n,45p,947b,772s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
@@ -660,14 +615,14 @@ ist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2015/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2015/texmf-dist/fo
 nts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2015/texmf-dis
-t/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/ty
-pe1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/ti
-mes/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8
-a.pfb>
-Output written on report.pdf (6 pages, 365282 bytes).
+t/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/
+type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/
+times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr
+8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on report.pdf (7 pages, 382351 bytes).
 PDF statistics:
- 280 PDF objects out of 1000 (max. 8388607)
- 233 compressed objects within 3 object streams
- 92 named destinations out of 1000 (max. 500000)
+ 329 PDF objects out of 1000 (max. 8388607)
+ 280 compressed objects within 3 object streams
+ 105 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
