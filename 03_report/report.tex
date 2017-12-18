@@ -196,7 +196,7 @@ Because of the integral over $\bm{\theta}$ and the sum over $\mathbf{z}$ inside 
 \begin{align*}
 \log p(\mathbf{w} | \bm{\alpha}, \bm{\beta}) 
 &= \log \int \sum_{\mathbf{z}} \frac{p (\bm{\theta}, \mathbf{z}, \mathbf{w} | \bm{\alpha}, \bm{\beta}) q(\bm{\theta}, \mathbf{z})}{q(\bm{\theta}, \mathbf{z})}  \diff\bm{\theta} \\
-&= \mathbb{E}_q \left[\log \int \sum_{\mathbf{z}} \frac{p (\bm{\theta}, \mathbf{z}, \mathbf{w} | \bm{\alpha}, \bm{\beta})}{q(\bm{\theta}, \mathbf{z})}  \diff\bm{\theta}\right] \\
+&= \log \mathbb{E}_q \left[ \frac{p (\bm{\theta}, \mathbf{z}, \mathbf{w} | \bm{\alpha}, \bm{\beta})}{q(\bm{\theta}, \mathbf{z})} \right] \\
 &\geq \mathbb{E}_q \left[\log p(\bm{\theta}, \mathbf{z}, \mathbf{w} | \bm{\alpha}, \bm{\beta})\right] - \mathbb{E}_q \left[\log q(\bm{\theta}, \mathbf{z})\right] \\
 &= \mathcal{L}(q, \bm{\alpha}, \bm{\beta})
 \end{align*}
