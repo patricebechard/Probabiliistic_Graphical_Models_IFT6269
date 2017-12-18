@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  17 DEC 2017 13:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  17 DEC 2017 23:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -370,7 +370,11 @@ Package: environ 2014/05/04 v0.3 A new way to define environments
 (/usr/local/texlive/2015/texmf-dist/tex/latex/trimspaces/trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 )))
-(./report.aux)
+(./report.aux
+
+LaTeX Warning: Label `default' multiply defined.
+
+)
 \openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 56.
@@ -484,13 +488,46 @@ Underfull \hbox (badness 1067) in paragraph at lines 96--96
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 98.
-<LDA_graph_model.png, id=5, 610.28pt x 270.00874pt>
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 99.
+(/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+Underfull \hbox (badness 2384) in paragraph at lines 99--100
+\OT1/ptm/m/n/10 mod-el-ing on text cor-pora. We im-ple-ment
+ []
+
+
+Underfull \hbox (badness 1331) in paragraph at lines 99--100
+\OT1/ptm/m/n/10 the model us-ing two dif-fer-ent al-go-rithms to
+ []
+
+
+Underfull \hbox (badness 2119) in paragraph at lines 99--100
+\OT1/ptm/m/n/10 do ap-prox-i-mate in-fer-ence on the in-tractable
+ []
+
+
+Underfull \hbox (badness 1571) in paragraph at lines 99--100
+\OT1/ptm/m/n/10 pos-te-rior we want to es-ti-mate : vari-a-tional
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--100
+\OT1/ptm/m/n/10 on GitHub : [][]$\OT1/pcr/m/n/10 https : / / github . com /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--100
+\OT1/pcr/m/n/10 patricebechard / Probabilistic _
+ []
+
+<LDA_graph_model.png, id=6, 610.28pt x 270.00874pt>
 File: LDA_graph_model.png Graphic file (type png)
  <use LDA_graph_model.png>
-Package pdftex.def Info: LDA_graph_model.png used on input line 126.
+Package pdftex.def Info: LDA_graph_model.png used on input line 128.
 (pdftex.def)             Requested size: 234.8775pt x 103.91866pt.
 
-Overfull \hbox (7.18082pt too wide) detected at line 140
+Overfull \hbox (7.18082pt too wide) detected at line 142
  []$[]   [] \OML/cmm/m/it/9 p\OT1/cmr/m/n/9 (\OML/cmm/b/it/9 ^^L[]\OMS/cmsy/m/n
 /9 j\OML/cmm/b/it/9 ^^Q\OT1/cmr/m/n/9 ) [] \OML/cmm/m/it/9 p\OT1/cmr/m/n/9 (\OM
 L/cmm/b/it/9 ^^R[]\OMS/cmsy/m/n/9 j\OML/cmm/b/it/9 \OT1/cmr/m/n/9 ) [] \OML/cm
@@ -500,7 +537,7 @@ sy/m/n/9 j\OML/cmm/m/it/9 z[]; \OML/cmm/b/it/9 ^^L[]\OT1/cmr/m/n/9 )$ []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 140--147
+Underfull \hbox (badness 10000) in paragraph at lines 142--149
 
  []
 
@@ -509,18 +546,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 140--147
 
 
  <./LDA_graph_model.png>]
-Overfull \hbox (5.1501pt too wide) in paragraph at lines 200--200
+Overfull \hbox (5.1501pt too wide) in paragraph at lines 202--202
 [] 
  []
 
-[2] <LDA_graph_model2.png, id=81, 600.2425pt x 165.61874pt>
+[2] <LDA_graph_model2.png, id=85, 600.2425pt x 165.61874pt>
 File: LDA_graph_model2.png Graphic file (type png)
 
 <use LDA_graph_model2.png>
-Package pdftex.def Info: LDA_graph_model2.png used on input line 219.
+Package pdftex.def Info: LDA_graph_model2.png used on input line 221.
 (pdftex.def)             Requested size: 234.8775pt x 64.80585pt.
  [3 <./LDA_graph_model2.png>]
-Overfull \hbox (2.59763pt too wide) detected at line 320
+Overfull \hbox (2.59763pt too wide) detected at line 322
 \OML/cmm/m/it/10 p\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 z[]\OMS/cmsy/m/n/10 j\OT1/c
 mr/bx/n/10 z[]\OML/cmm/m/it/10 ; \OT1/cmr/bx/n/10 w\OML/cmm/m/it/10 ; \OML/cmm/
 b/it/10 \OML/cmm/m/it/10 ; \OML/cmm/b/it/10 ^^Q\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n
@@ -531,62 +568,45 @@ b/it/10 \OML/cmm/m/it/10 ; \OML/cmm/b/it/10 ^^Q\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n
 m/m/it/10 ; \OML/cmm/b/it/10 \OT1/cmr/m/n/10 )
  []
 
-
+[4]
 Underfull \vbox (badness 1728) has occurred while \output is active []
 
- [4]
-<20_newsgroups.png, id=152, 843.15pt x 305.14pt>
+
+<20_newsgroups.png, id=153, 843.15pt x 305.14pt>
 File: 20_newsgroups.png Graphic file (type png)
  <use 20_newsgroups.png>
-Package pdftex.def Info: 20_newsgroups.png used on input line 401.
+Package pdftex.def Info: 20_newsgroups.png used on input line 403.
 (pdftex.def)             Requested size: 234.8775pt x 85.00093pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-Overfull \hbox (20.95828pt too wide) in paragraph at lines 423--423
-[] 
- []
-
-[5 <./20_newsgroups.png>]
-<perplexity_as_a_function_of_number_of_topics.png, id=188, 433.62pt x 289.08pt>
+ [5 <./20_newsgroups.png>]
+<perplexity_as_a_function_of_number_of_topics.png, id=189, 433.62pt x 289.08pt>
 File: perplexity_as_a_function_of_number_of_topics.png Graphic file (type png)
 <use perplexity_as_a_function_of_number_of_topics.png>
 Package pdftex.def Info: perplexity_as_a_function_of_number_of_topics.png used 
-on input line 456.
+on input line 478.
 (pdftex.def)             Requested size: 234.8775pt x 156.58607pt.
-
-Underfull \vbox (badness 1215) has occurred while \output is active []
-
-
-Overfull \hbox (240.29033pt too wide) in paragraph at lines 473--483
- [] 
- []
-
-(./report.bbl [6 <./perplexity_as_a_function_of_number_of_topics.png>]
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 70.
-
-(/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1pcr.fd
-File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-))
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 504.
- [7
-
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 504.
-
-(./report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 504.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 504.
+ [6 <./perplexity_as_a_function_of_number_of_topics.png>] (./report.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 522.
+ [7]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 522.
+ (./report.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 522.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 522.
 Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 504.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 522.
  ) 
 Here is how much of TeX's memory you used:
- 7357 strings out of 493089
- 105638 string characters out of 6134842
- 211816 words of memory out of 5000000
- 10576 multiletter control sequences out of 15000+600000
+ 7363 strings out of 493089
+ 105763 string characters out of 6134842
+ 209038 words of memory out of 5000000
+ 10580 multiletter control sequences out of 15000+600000
  38120 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  29i,13n,45p,947b,772s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -619,10 +639,10 @@ t/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/
 type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/
 times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr
 8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on report.pdf (7 pages, 382351 bytes).
+Output written on report.pdf (7 pages, 386288 bytes).
 PDF statistics:
- 329 PDF objects out of 1000 (max. 8388607)
- 280 compressed objects within 3 object streams
- 105 named destinations out of 1000 (max. 500000)
+ 337 PDF objects out of 1000 (max. 8388607)
+ 288 compressed objects within 3 object streams
+ 107 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

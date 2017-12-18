@@ -96,7 +96,7 @@ Latent Dirichlet Allocation}
 \printAffiliationsAndNotice{\icmlEqualContribution} % otherwise use the standard text.
 
 \begin{abstract} 
-TODO
+We present the generative probabilistic model of latent Dirichlet allocation useful for topic modeling on text corpora. We implement the model using two different algorithms to do approximate inference on the intractable posterior we want to estimate : variational inference and Gibbs sampling. Experiments on real data are conducted using the \textit{20 newsgroups} dataset. All the code is available online on GitHub : \url{https://github.com/patricebechard/Probabilistic_Graphical_Models_IFT6269}.
 \end{abstract} 
 
 \section{Introduction and Related Works}
@@ -120,8 +120,10 @@ $w_{d,n} \sim \mathrm{Mult}(\bm{\beta}_{z_{d,n}})$
 \end{enumerate}
 This generative process is illustrated in the directed graphical model of figure \ref{graph_model}.
 
+
+
 \begin{figure}[ht]
-\vskip 0.2in
+%\vskip 0.2in
 \begin{center}
 \centerline{\includegraphics[width=\columnwidth]{LDA_graph_model}}
 \caption{Graphical model corresponding to the generative process for LDA.}
@@ -417,12 +419,32 @@ Perplexity is a measure of the generalization performance of models and is used 
 For LDA, the likelihood found $p(\mathbf{w}_d)$ found in equation \ref{eq:perplexity} can be expressed as the parameters $\bm{\beta}$ and $\bm{\theta}$. If we develop the expression for the likelihood, we have :
 
 \begin{align}
-p(\mathbf{w}_d) & = \prod_{n=1}^{N_d} \sum_{k=1} ^K p(w_{d,n}=t|z_{n,d}=k) \cdot p(z_{d,n}=k|d=d) \nonumber\\
+p(\mathbf{w}_d) & = \prod_{n=1}^{N_d} \sum_{k=1} ^K p(w_{d,n}=t|z_{n,d}=k) \nonumber \\
+				& \qquad \qquad \qquad \qquad \cdot p(z_{d,n}=k|d=d) \nonumber\\
 				& = \prod_{t=1}^{V} \left( \sum_{k=1}^K \bm{\beta}_{k,t} \cdot \bm{\theta}_{d,k} \right)^{n_d ^{(t)}}\nonumber\\
 \log p(\mathbf{w}_d) & = \sum_{t=1}^V n_d ^{(t)} \log \left( \sum_{k=1}^K \bm{\beta}_{k,t} \cdot \bm{\theta}_{d,k} \right)
 \end{align}
 
 Here, $n_d ^{(t)}$ is the number of times term $t$ appears in document $d$. Note here that the term $\bm{\theta}_{d,k}$ has to be obtained for the new test documents via methods shown in the subsequent sections.
+
+\begin{table*}[htb]
+\caption{\label{tab:top_words_LDA} Most probable words associated to some topics for LDA trained with variational EM.}
+\vskip 0.15in
+\begin{center}
+\begin{small}
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c}
+\textsc{Space} & \textsc{Computer} & \textsc{Religion} & \textsc{Numbers} & \textsc{Mid-East} & \textsc{Sport}\\
+\hline 
+space & use & god & 10 & armenian & game\\
+nasa & windows & people & 00 & people & team \\
+program & file & believe & 25 &  jews & year  \\
+earth & card & jesus & 15 &  turkish & games \\
+launch & window & know & 11 &  war & time 
+\end{tabular}
+\end{small}
+\end{center}
+\label{default}
+\end{table*}%
 
 \subsection{Query sampling}
 
@@ -448,10 +470,10 @@ It is important that the size of the unknown documents be smaller than the train
 \subsection{Choosing the Number of Topics}
 We pick the number of topics which gives the best generalization performance (the best test-set perplexity). 
 
-For the variational inference implementation, we ran into some numerical issues to compute the likelihood of documents. Thus we computed training and test set perplexity with the batch variational inference implementation by sklearn. As we can see in figure \ref{perplexity}, training-set perplexity always goes down when we increase the number of topics, but the best test-set perplexity is attained for 12 topics (for more topics, we overfit).
+For the variational inference implementation, we ran into some numerical issues to compute the likelihood of documents. Thus we computed training and test set perplexity with the batch variational inference implementation by sklearn. As we can see in figure \ref{perplexity}, training-set perplexity always goes down when we increase the number of topics, but the best test-set perplexity is attained for 12 topics. Overfitting occurs when more topics are chosen.
 
 \begin{figure}[ht]
-\vskip 0.2in
+%\vskip 0.2in
 \begin{center}
 \centerline{\includegraphics[width=\columnwidth]{perplexity_as_a_function_of_number_of_topics}}
 \caption{Variational inference implementation: the best test set perplexity is reached at 12 topics.}
@@ -463,36 +485,32 @@ For the variational inference implementation, we ran into some numerical issues 
 TODO add similar curve for implementation with Gibbs sampling
 
 \subsection{Visual Inspection of Topics}
-We trained both our models with 12 topics in order to visually inspect the learnt topics. The most probable words for each topic for LDA trained with our model of variational EM are in table \ref{tab:top_words_LDA}.
+We trained both our models with 12 topics in order to visually inspect the learnt topics. The most probable words for each topic for LDA trained with our model of variational EM are in table \ref{tab:top_words_LDA}. We only present the 6 most relevant topics for each model. The most probable words for each topic for LDA trained using collapsed Gibbs sampling are presented in table \ref{tab:top_words_LDA_gibbs}. 
 
-\begin{table}[htp]
-\caption{\label{tab:top_words_LDA} Most probable words associated to some topics for LDA trained with variational EM.}
+\begin{table*}[htb]
+\caption{\label{tab:top_words_LDA_gibbs} Most probable words associated to some topics for LDA trained with collapsed Gibbs sampling.}
 \vskip 0.15in
 \begin{center}
 \begin{small}
 \begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c}
-\textsc{Space} & \textsc{Computer} & \textsc{Religion} & \textsc{Numbers} & \textsc{Cyber Security} & \textsc{Genocide} & \textsc{Sport} & \textsc{Politics} & \textsc{Garbage} \\
+\textsc{Space} & \textsc{Computer} & \textsc{Religion} & \textsc{Numbers} & \textsc{Mid-East} & \textsc{Sport}\\
 \hline 
-space & use & god & 10 & key & armenian & game & gun & ax \\
-nasa & windows & people & 00 & government & people & team & state & max \\
-program & file & believe & 25 & encryption & jews & year & control & g9v \\
-earth & card & jesus & 15 & privacy & turkish & games & health & b8f \\
-launch & window & know & 11 & security & war & time & law & 1d9
+space & drive & god & 1 & armenian & game\\
+nasa & card & jesus & 2 & jew & year \\
+mission & disk & christ & 0 &  turkish & team  \\
+data & system & life & 3 &  muslim & run \\
+lunar & controller & sin & 4 &  people & player 
 \end{tabular}
 \end{small}
 \end{center}
 \label{default}
-\end{table}%
-
-TODO put table at the top of the page on both columns (don't know how to do) \\
-TODO add similar table for implementation with Gibbs sampling
+\end{table*}%
 
 
 
 \section{Discussion}
 
-
-
+In this report, we have presented the generative process assumed in the latent Dirichlet allocation. Because of an intractable posterior, approximate inference was needed to compute the desired quantities. Variational inference as well as Gibbs sampling were used to approximate the posterior. We also conduct experiments on text data from the \textit{20 newsgroups} dataset and present the obtained perplexity and most probable words found for certain topics for each model. Although latent Dirichlet allocation is one of the most simple and useful models for topic modeling, its generative process is not really realistic, relying on the bag of words assumption. More recently, Hidden Topic Markov Model \cite{gruber2007hidden} and many other probabilistic graphical models have tried to relax this assumption.
 
 % In the unusual situation where you want a paper to appear in the
 % references without citing it in the main text, use \nocite

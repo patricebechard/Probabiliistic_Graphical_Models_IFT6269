@@ -1,4 +1,4 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{11}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -50,6 +50,12 @@ Griffiths, Tom.
   allocation.
 \newblock Technical report, Department of Psychology, Stanford University,
   Stanford, CA, 2002.
+
+\bibitem[Gruber et~al.(2007)Gruber, Weiss, and Rosen-Zvi]{gruber2007hidden}
+Gruber, Amit, Weiss, Yair, and Rosen-Zvi, Michal.
+\newblock Hidden topic markov models.
+\newblock In \emph{Artificial intelligence and statistics}, pp.\  163--170,
+  2007.
 
 \bibitem[Heinrich(2005)]{heinrich2005parameter}
 Heinrich, Gregor.
