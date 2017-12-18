@@ -470,22 +470,21 @@ It is important that the size of the unknown documents be smaller than the train
 \subsection{Choosing the Number of Topics}
 We pick the number of topics which gives the best generalization performance (the best test-set perplexity). 
 
-For the variational inference implementation, we ran into some numerical issues to compute the likelihood of documents. Thus we computed training and test set perplexity with the batch variational inference implementation by sklearn. As we can see in figure \ref{perplexity}, training-set perplexity always goes down when we increase the number of topics, but the best test-set perplexity is attained for 12 topics. Overfitting occurs when more topics are chosen.
+For the variational inference implementation, we ran into some numerical issues to compute the likelihood of documents. Thus we computed training and test set perplexity with the batch variational inference implementation by sklearn. As we can see in figure \ref{perplexity}, training-set perplexity always goes down when we increase the number of topics, but the best test-set perplexity is attained for 14 topics. Overfitting occurs when more topics are chosen. Figure \ref{perplexity} also presents the perplexity obtained using the Gibbs sampling implementation of LDA. We see that 
+
 
 \begin{figure}[ht]
 %\vskip 0.2in
 \begin{center}
-\centerline{\includegraphics[width=\columnwidth]{perplexity_as_a_function_of_number_of_topics}}
-\caption{Variational inference implementation: the best test set perplexity is reached at 12 topics.}
+\centerline{\includegraphics[width=\columnwidth]{perplexity}}
+\caption{Perplexity obtained for various topic numbers for the LDA implementation using Gibbs sampling as well as the Sklearn implementation.The best test set perplexity is reached at 14 topics using the Sklearn implementation.}
 \label{perplexity}
 \end{center}
 \vskip -0.2in
 \end{figure} 
 
-TODO add similar curve for implementation with Gibbs sampling
-
 \subsection{Visual Inspection of Topics}
-We trained both our models with 12 topics in order to visually inspect the learnt topics. The most probable words for each topic for LDA trained with our model of variational EM are in table \ref{tab:top_words_LDA}. We only present the 6 most relevant topics for each model. The most probable words for each topic for LDA trained using collapsed Gibbs sampling are presented in table \ref{tab:top_words_LDA_gibbs}. 
+We trained both our models with 14 topics in order to visually inspect the learnt topics. The most probable words for each topic for LDA trained with our model of variational EM are in table \ref{tab:top_words_LDA}. We only present the 6 most relevant topics for each model. The most probable words for each topic for LDA trained using collapsed Gibbs sampling are presented in table \ref{tab:top_words_LDA_gibbs}. 
 
 \begin{table*}[htb]
 \caption{\label{tab:top_words_LDA_gibbs} Most probable words associated to some topics for LDA trained with collapsed Gibbs sampling.}
