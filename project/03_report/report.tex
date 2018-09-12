@@ -109,8 +109,9 @@ Latent Dirichlet allocation (LDA) is a generative probabilisitic model of a corp
 The basic idea behind LDA is that each document is represented as a random mixture over $K$ latent topics, where each topic is characterized by a multinomial distribution over words, parametrized by a vector $\bm{\beta}_{k}$, $k \in {1,...,K}$. 
 
 Formally, LDA assumes the following generative process for each document $\mathbf{w}_d$:
+\vbox{
 \begin{enumerate}
-\item Sample a distribution over topics $\bm{\theta_d} \sim Dir(\bm{\alpha})$
+\item Sample a distribution over topics $\bm{\theta_d} \sim \mathrm{Dir}(\bm{\alpha})$
 \item For each of the $N_d$ words $w_{d,n}$ independently:
 \begin{enumerate}
 \item Draw a topic from the distribution over topics $z_{d,n} \sim \mathrm{Mult}(\bm{\theta}_d)$
@@ -118,6 +119,7 @@ Formally, LDA assumes the following generative process for each document $\mathb
 $w_{d,n} \sim \mathrm{Mult}(\bm{\beta}_{z_{d,n}})$
 \end{enumerate}
 \end{enumerate}
+}
 This generative process is illustrated in the directed graphical model of figure \ref{graph_model}.
 
 
@@ -470,7 +472,7 @@ It is important that the size of the unknown documents be smaller than the train
 \subsection{Choosing the Number of Topics}
 We pick the number of topics which gives the best generalization performance (the best test-set perplexity). 
 
-For the variational inference implementation, we ran into some numerical issues to compute the likelihood of documents. Thus we computed training and test set perplexity with the batch variational inference implementation by sklearn. As we can see in figure \ref{perplexity}, training-set perplexity always goes down when we increase the number of topics, but the best test-set perplexity is attained for 14 topics. Overfitting occurs when more topics are chosen. Figure \ref{perplexity} also presents the perplexity obtained using the Gibbs sampling implementation of LDA. We see that 
+For the variational inference implementation, we ran into some numerical issues to compute the likelihood of documents. Thus we computed training and test set perplexity with the batch variational inference implementation by sklearn. As we can see in figure \ref{perplexity}, training-set perplexity always goes down when we increase the number of topics, but the best test-set perplexity is attained for 14 topics. Overfitting occurs when more topics are chosen. Figure \ref{perplexity} also presents the perplexity obtained using the Gibbs sampling implementation of LDA.
 
 
 \begin{figure}[ht]

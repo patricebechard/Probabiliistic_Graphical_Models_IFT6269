@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  18 DEC 2017 17:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  18 DEC 2017 19:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -521,13 +521,33 @@ Underfull \hbox (badness 10000) in paragraph at lines 99--100
 \OT1/pcr/m/n/10 patricebechard / Probabilistic _
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--124
+[]\OT1/ptm/m/n/10 Formally, LDA as-sumes the fol-low-ing gen-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--124
+\OT1/ptm/m/n/10 er-a-tive pro-cess for each doc-u-ment $\OT1/cmr/bx/n/10 w[]$\O
+T1/ptm/m/n/10 :
+ []
+
+
+Underfull \hbox (badness 2205) in paragraph at lines 111--124
+\OT1/ptm/m/n/10 This gen-er-a-tive pro-cess is il-lus-trated in the di-rected
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 <LDA_graph_model.png, id=6, 610.28pt x 270.00874pt>
 File: LDA_graph_model.png Graphic file (type png)
  <use LDA_graph_model.png>
-Package pdftex.def Info: LDA_graph_model.png used on input line 128.
+Package pdftex.def Info: LDA_graph_model.png used on input line 130.
 (pdftex.def)             Requested size: 234.8775pt x 103.91866pt.
 
-Overfull \hbox (7.18082pt too wide) detected at line 142
+Overfull \hbox (7.18082pt too wide) detected at line 144
  []$[]   [] \OML/cmm/m/it/9 p\OT1/cmr/m/n/9 (\OML/cmm/b/it/9 ^^L[]\OMS/cmsy/m/n
 /9 j\OML/cmm/b/it/9 ^^Q\OT1/cmr/m/n/9 ) [] \OML/cmm/m/it/9 p\OT1/cmr/m/n/9 (\OM
 L/cmm/b/it/9 ^^R[]\OMS/cmsy/m/n/9 j\OML/cmm/b/it/9 \OT1/cmr/m/n/9 ) [] \OML/cm
@@ -537,7 +557,7 @@ sy/m/n/9 j\OML/cmm/m/it/9 z[]; \OML/cmm/b/it/9 ^^L[]\OT1/cmr/m/n/9 )$ []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--149
+Underfull \hbox (badness 10000) in paragraph at lines 144--151
 
  []
 
@@ -546,7 +566,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 142--149
 
 
  <./LDA_graph_model.png>]
-Overfull \hbox (5.1501pt too wide) in paragraph at lines 202--202
+Overfull \hbox (5.1501pt too wide) in paragraph at lines 204--204
 [] 
  []
 
@@ -554,10 +574,13 @@ Overfull \hbox (5.1501pt too wide) in paragraph at lines 202--202
 File: LDA_graph_model2.png Graphic file (type png)
 
 <use LDA_graph_model2.png>
-Package pdftex.def Info: LDA_graph_model2.png used on input line 221.
+Package pdftex.def Info: LDA_graph_model2.png used on input line 223.
 (pdftex.def)             Requested size: 234.8775pt x 64.80585pt.
  [3 <./LDA_graph_model2.png>]
-Overfull \hbox (2.59763pt too wide) detected at line 322
+Underfull \vbox (badness 2181) has occurred while \output is active []
+
+
+Overfull \hbox (2.59763pt too wide) detected at line 324
 \OML/cmm/m/it/10 p\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 z[]\OMS/cmsy/m/n/10 j\OT1/c
 mr/bx/n/10 z[]\OML/cmm/m/it/10 ; \OT1/cmr/bx/n/10 w\OML/cmm/m/it/10 ; \OML/cmm/
 b/it/10 \OML/cmm/m/it/10 ; \OML/cmm/b/it/10 ^^Q\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n
@@ -568,14 +591,10 @@ b/it/10 \OML/cmm/m/it/10 ; \OML/cmm/b/it/10 ^^Q\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n
 m/m/it/10 ; \OML/cmm/b/it/10 \OT1/cmr/m/n/10 )
  []
 
-[4]
-Underfull \vbox (badness 1728) has occurred while \output is active []
-
-
-<20_newsgroups.png, id=153, 843.15pt x 305.14pt>
+[4] <20_newsgroups.png, id=153, 843.15pt x 305.14pt>
 File: 20_newsgroups.png Graphic file (type png)
  <use 20_newsgroups.png>
-Package pdftex.def Info: 20_newsgroups.png used on input line 403.
+Package pdftex.def Info: 20_newsgroups.png used on input line 405.
 (pdftex.def)             Requested size: 234.8775pt x 85.00093pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -584,25 +603,25 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 File: perplexity.png Graphic file (type png)
 
 <use perplexity.png>
-Package pdftex.def Info: perplexity.png used on input line 479.
+Package pdftex.def Info: perplexity.png used on input line 481.
 (pdftex.def)             Requested size: 234.8775pt x 176.15768pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6 <./perplexity.png>] (./report.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 521.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 523.
  [7]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 521.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 523.
  (./report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 521.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 521.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 523.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 523.
 Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 521.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 523.
  ) 
 Here is how much of TeX's memory you used:
  7363 strings out of 493089
@@ -641,7 +660,7 @@ t/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/
 type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/
 times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr
 8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on report.pdf (7 pages, 403831 bytes).
+Output written on report.pdf (7 pages, 403388 bytes).
 PDF statistics:
  338 PDF objects out of 1000 (max. 8388607)
  289 compressed objects within 3 object streams
